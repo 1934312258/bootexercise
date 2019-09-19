@@ -2,6 +2,7 @@ package com.kevin.javaDemo.FilterDemo;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -22,7 +23,12 @@ public class TimeFilter implements Filter {
     UserInfo userInfo = new UserInfo();
 
 
+<<<<<<< HEAD
     public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
+=======
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+>>>>>>> b124d22ac3037eca1cce64aac65f208338edda43
         System.out.println("=========time filter init");
         if (userInfo != null) {
             System.out.println("-------------------------------------------------------------------");
