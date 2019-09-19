@@ -17,7 +17,7 @@ public class UserController {
     public UserInfo getUserInfo(@PathVariable Long id) {
         System.out.println("=====UserController getInfo =======");
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(id);
+        userInfo.s
         userInfo.setName("kevin");
         userInfo.setAge(18);
         System.out.println("====userController getInfo end=====");
