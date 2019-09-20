@@ -189,7 +189,7 @@ public class Timeutil {
         calendar.getTime();
         System.out.println(clock1.instant());
         System.out.println(instant);
-        System.out.println(LocalDate.parse(str2));
+        System.out.println(adt);
 
 
 
