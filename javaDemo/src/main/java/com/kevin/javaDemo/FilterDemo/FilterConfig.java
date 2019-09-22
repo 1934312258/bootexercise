@@ -15,15 +15,15 @@ import java.util.List;
 @Configuration
 public class FilterConfig {
     @Bean
-    public FilterRegistrationBean<TimeFilter> timeFilter(){
-        FilterRegistrationBean<TimeFilter>registrationBean=new FilterRegistrationBean<>();
-        TimeFilter timeFilter=new TimeFilter();
+    public FilterRegistrationBean<TimeFilter> timeFilter() {
+        FilterRegistrationBean<TimeFilter> registrationBean = new FilterRegistrationBean<>();
+        TimeFilter timeFilter = new TimeFilter();
         registrationBean.setFilter(timeFilter);
-        List<String>urls=new ArrayList<>();
+        List<String> urls = new ArrayList<>();
         //urls.add("/user/*")
         urls.add("/*");
         registrationBean.setUrlPatterns(urls);
-        return  registrationBean;
+        return registrationBean;
 
     }
 }
