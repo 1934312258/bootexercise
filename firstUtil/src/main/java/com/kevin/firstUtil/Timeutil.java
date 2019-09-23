@@ -53,15 +53,11 @@ public class Timeutil {
 
 
         /*
-<<<<<<< HEAD
          * LocalDate与LocalTime均为不可变量，修改之后必修赋值给新的对象引用
          * */
-        String str = "2019-09-05T02:19:20.373Z";
-=======
-        * LocalDate与LocalTime均为不可变量，修改之后必修赋值给新的对象引用
-        * */
+        //String str = "2019-09-05T02:19:20.373Z";
 
->>>>>>> b124d22ac3037eca1cce64aac65f208338edda43
+
 
         //获取当前年月日
         LocalDate date = LocalDate.now();
@@ -143,18 +139,14 @@ public class Timeutil {
         //获取时区内当前时间、偏移量与时区的ZonedDateTime实例
         ZonedDateTime american = ZonedDateTime.now(ZoneId.of("America/New_York"));
         //获取本地时间、时区的ZonedDateTime实例，不明白什么意思
-<<<<<<< HEAD
         ZonedDateTime zonedate = ZonedDateTime.of(LocalDateTime.now(), zone);
-=======
-        ZonedDateTime zonedate=ZonedDateTime.of(LocalDateTime.now(),zone);
+
         //ZoneOffset类用于表示时区,与GMT或UTC标准时区的差异
         ZoneOffset zoneOffset=ZoneOffset.of("+02:00");
         //只显示默认时区时间与偏移量，ZonedDateTime还可以显示时区
         OffsetDateTime offsetDateTime=OffsetDateTime.of(LocalDateTime.now(),zoneOffset);
 
 
-
->>>>>>> b124d22ac3037eca1cce64aac65f208338edda43
 
         //计算两个日期之间间隔的天数、月数、年数
         LocalDate next = LocalDate.of(2020, 07, 19);
