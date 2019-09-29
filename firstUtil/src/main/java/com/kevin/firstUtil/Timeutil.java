@@ -3,6 +3,7 @@ package com.kevin.firstUtil;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,6 +48,9 @@ public class Timeutil {
          *
          * 8）再补充一点，日期格式“MMM d yyyy”和“MMM dd yyyy”有一些微妙的不同，第一个格式可以解析“Jan 2 2014”和“Jan 14 2014”，而第二个在解析“Jan 2 2014”就会抛异常，因为第二个格式里要求日必须是两位的。
          * 如果想修正，你必须在日期只有个位数时在前面补零，就是说“Jan 2 2014”应该写成 “Jan 02 2014”。
+
+
+
          */
 
 
@@ -120,11 +124,17 @@ public class Timeutil {
         Clock clock = Clock.systemDefaultZone();
         //clock.instant()获取当前日期时间，clock.millis()获取时间毫秒
         Clock clock1 = Clock.systemUTC();//世界协调时间
+        Clock clock2=Clock.system(ZoneId.of("Asia/Shanghai"));//获取上海时区时钟
+        Clock c4 = Clock.fixed(Instant.now(), ZoneId.of("Asia/Shanghai"));// 固定上海时区时钟，一个定值
+        Clock c5 = Clock.offset(clock1, Duration.ofSeconds(2)); // 相对于系统默认时钟两秒的时钟
         LocalDate.now(clock);//获取时区的时间
 
         //Instant类获取时间戳,默认UTC标准时间的时间戳，
         //相当于Date类且可以转换，Date.from(instant),Date.toInstant()
         Instant instant=Instant.now();
+        instant.getEpochSecond();//精确到秒
+        instant.toEpochMilli();//精确到毫秒
+
 
         //ZoneId时区
         ZoneId zone = ZoneId.of("Europe/Berlin");
@@ -154,6 +164,16 @@ public class Timeutil {
         period.getDays();
         period.getMonths();
         period.getYears();
+        //计算两个日期的时间间隔，天、时、分、毫秒、纳秒，日期之间的差值以秒存储，通过getSecond获得
+        Duration duration=Duration.between(LocalDateTime.of(2019,9,23,5,11,56,132),dateTime);
+        Long days1=duration.toDays();
+        Long hours=duration.toHours();
+        duration.toMinutes();
+        duration.toMillis();
+        duration.toNanos();
+        duration.getSeconds();
+        //ChronoUnit工具类底层封装Duration实现日期差
+        Long minute=ChronoUnit.MINUTES.between(LocalDateTime.of(2019,9,23,5,11,56,132),dateTime);
 
 
         //判断是否为闰年
@@ -170,7 +190,8 @@ public class Timeutil {
 
         //日期转换为字符串MMM为中文月份
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("M d yyyy hh:mm a");
-        String string=dateTime.format(dateTimeFormatter);
+        //String string=dateTime.format(dateTimeFormatter);
+        String string=LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         /////*****当不确定月份或者天有没有补零时，可以使用M d yyyy格式解析日期
         String str = "2019-09-05T02:19:20.373";
@@ -189,9 +210,9 @@ public class Timeutil {
        String str2="2012/12/12";
         Calendar calendar=Calendar.getInstance();
         calendar.getTime();
-        System.out.println(clock1.instant());
-        System.out.println(instant);
-        System.out.println(adt);
+        System.out.println(instant.getEpochSecond());
+        System.out.println(instant.toEpochMilli());
+        System.out.println(string);
 
     }
 
