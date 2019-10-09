@@ -142,7 +142,7 @@ public class Timeutil {
         LocalTime a = LocalTime.now(zone);
         LocalDate b = LocalDate.now(zone1);
         LocalDateTime c = LocalDateTime.now(zone);
-
+        LocalDateTime c1=LocalDateTime.ofInstant(Instant.now(),ZoneId.systemDefault());
         //转换时间为另一时区
         //直接加入时区即可获得相应时区的时间
         LocalDateTime dateTime = LocalDateTime.now(ZoneId.systemDefault());
@@ -172,6 +172,7 @@ public class Timeutil {
         duration.toMillis();
         duration.toNanos();
         duration.getSeconds();
+        Duration d1=Duration.ofDays(1);//一天时差
         //ChronoUnit工具类底层封装Duration实现日期差
         Long minute=ChronoUnit.MINUTES.between(LocalDateTime.of(2019,9,23,5,11,56,132),dateTime);
 
