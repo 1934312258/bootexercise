@@ -6,6 +6,7 @@
     <modules>
         <module>firstUtil</module>
         <module>javaDemo</module>
+        <module>zookeeper</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
