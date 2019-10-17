@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>zookeeper-client</module>
+        <module>zookeeper-agent</module>
     </modules>
 
     <dependencies>
