@@ -23,19 +23,19 @@ public class Agent {
     }
 
     //更新服务节点状态
-    public String getOsInfo(){
+//    public String getOsInfo(){
+//
+//    }
 
-    }
-
-    public static String getLocalIp(){
-        InetAddress addr;
-        try {
-            addr=InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        return addr.getHostAddress();
-    }
+//    public static String getLocalIp(){
+//        InetAddress addr;
+//        try {
+//            addr=InetAddress.getLocalHost();
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
+//        return addr.getHostAddress();
+//    }
 
     public void buildRoot(){
         if(!zkClient.exists(rootPath)){
