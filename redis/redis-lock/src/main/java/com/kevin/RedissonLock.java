@@ -1,5 +1,7 @@
 package com.kevin;
 
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,15 @@ public class RedissonLock {
     Logger logger= LoggerFactory.getLogger(RedissonLock.class);
     @Autowired
     StringRedisTemplate redisTemplate;
+    @Autowired
+    Redisson redisson;
     @RequestMapping("/deduct_stock")
     public String deductStock(){
-
+        String lockKey="product_001";
+        RLock redissonLock=redisson.getLock(lockKey);
        try {
-
+           //加锁并实现锁续命
+           redissonLock.lock();
          int stock=Integer.parseInt(redisTemplate.opsForValue().get("stock"));
          if(stock>0){
              int realStock=stock-1;
@@ -30,8 +36,8 @@ public class RedissonLock {
              System.out.println("扣减库存失败");
          }
        }finally {
-
+            redissonLock.unlock();
        }
-      return "";
+      return "end";
     }
 }
