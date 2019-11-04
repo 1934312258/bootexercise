@@ -32,7 +32,7 @@ public class NormalLock {
          }
          int stock=Integer.parseInt(redisTemplate.opsForValue().get("stock"));
          if(stock>0){
-             int realStock=stock-1;
+             int realStock=stock - 1;
              redisTemplate.opsForValue().set("stock",realStock+"");
              System.out.println("扣减成功，剩余库存为："+realStock);
              logger.info("扣减成功，剩余库存为{}"+realStock);
