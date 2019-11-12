@@ -1,0 +1,21 @@
+server:
+  port:8080
+
+spring:
+  redis:
+    database: 0
+    timeout: 3000
+    password: kevin
+
+    # sentinel:
+    #master: mymaster
+    # nodes: 192.168.101.15:6379,192.168.101.19:6380
+
+    cluster:
+      nodes: 192.168.101.15,192.168.101.19
+      lettuce:
+        pool:
+          max-idle: 50
+          minidle: 10
+          max-total: 100
+          max-wait: 1000

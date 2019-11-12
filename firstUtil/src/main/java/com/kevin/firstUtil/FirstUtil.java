@@ -1,5 +1,6 @@
 package com.kevin.firstUtil;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 public class FirstUtil {
+    @Value("${spring.redis.name}")
+    private String redis;
     public static void main(String[] args) {
+
         SpringApplication.run(FirstUtil.class, args);
+    System.out.println(new FirstUtil().redis);
     }
 }
