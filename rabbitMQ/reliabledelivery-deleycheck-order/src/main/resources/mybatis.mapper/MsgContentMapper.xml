@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kevin.mapper.MsgContentMapper">
+    <insert id="saveMsgContent">
+        insert into message_content(msg_id,create_time,update_time,msg_status,exchange,touting_key,err_cause
+        ,order_no,max_retry,current_retry,product_no)
+        values(#{msgId},#{createTime},#{updateTime},#{msgStatus},#{exchange},#{routingKey},#{errCause},#{orderNo}
+        ,#{maxRetry},#{currentRetry},#{productNo})
+    </insert>
+
+    <update id="updateMsgStatus" parameterType="com.kevin.entity.MessageContent">
+        update message_content
+        <set>
+            <if test="updateTime!=null">
+                update_time=#{updateTime},
+            </if>
+            <if test="msgStatus!=null and msgStatus!=''">
+                msg_status=#{msgStatus},
+            </if>
+            <if test="errCause!=null and errCause!=''">
+                err_cause=#{errCause}
+            </if>
+        </set>
+        where msg_id=#{msgId} and current_retry &lt;max_retry
+    </update>
+
+    <select id="queryMsgs" parameterType="Map" resultType="com.kevin.entity.MessageContent">
+        select * from message_content where TIMESTAMPDIFF(second ,create_time,sysdate())>#{timeDiff}
+        and msg_status!=#{msgStatus} and current_retry &lt; max_retry
+    </select>
+
+    <update id="updateMsgRetryCount" parameterType="String">
+        update message_content set current_retry=current_retry=1 where
+        <![CDATA[current_retry<max_retry]]> and msg_id=#{msgId}
+    </update>
+</mapper>

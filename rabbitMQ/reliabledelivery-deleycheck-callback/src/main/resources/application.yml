@@ -1,0 +1,51 @@
+#数据资源配置
+spring:
+  datasource:
+    druid:
+      username: root
+      password: adminroot
+      jdbcUrl: jdbc:mysql://localhost:3306
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      filters: stat,wall
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  rabbit:
+    host: 192.168.101.19
+    port: 5672
+    virtual-host: kevin
+    username: kevin
+    password: kevin
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+        acknowledge-mode: manual  #手动确认消息，none自动确认，auto根据情况确认
+        prefetch:
+        default-request-rejected: false
+
+  redis:
+    host: 192.168.101.19
+    port: 6379
+
+mybatis:
+  mapper-location: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.kevin.mapper: debug
+server:
+  port: 8866
