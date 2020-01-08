@@ -14,7 +14,7 @@
     <modules>
         <module>redis-jedis</module>
         <module>redis-lock</module>
-        <module>redis-sentinel</module>
+        <module>redis-sentinel-cluster</module>
     </modules>
 
     <dependencies>

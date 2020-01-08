@@ -1,5 +1,6 @@
 package com.kevin.ack_nack;
 
+import com.kevin.confirm.KevinConfirmListener;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
@@ -21,11 +22,11 @@ public class AckNackRabbitProducer {
   public static void main(String[] args) throws IOException, TimeoutException {
       //创建连接工厂
       ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
+      factory.setHost("192.168.248.1");
       factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
+      factory.setVirtualHost("/");
+      factory.setUsername("guest");
+      factory.setPassword("guest");
       factory.setConnectionTimeout(100000);
 
       //创建连接
@@ -36,6 +37,8 @@ public class AckNackRabbitProducer {
       String exchangeName="kevin.policeman";
       String routingkey="kevin.policeman.key";
       String message="hello kevin";
+        //消息确认监听
+      channel.addConfirmListener(new KevinConfirmListener());
 
       for(int i=0;i<10;++i){
           Map<String,Object>infoMap=new HashMap<>();

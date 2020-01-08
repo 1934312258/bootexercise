@@ -4,6 +4,7 @@ import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import org.springframework.beans.factory.InitializingBean;
 
 import java.io.IOException;
 import java.util.Date;
@@ -21,11 +22,11 @@ public class Confirmproducer {
   public static void main(String[] args) throws IOException, TimeoutException {
       //创建连接工厂
       ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
+      factory.setHost("192.168.248.1");
       factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
+      factory.setVirtualHost("/");
+      factory.setUsername("guest");
+      factory.setPassword("guest");
       factory.setConnectionTimeout(100000);
 
       //创建连接
@@ -36,7 +37,7 @@ public class Confirmproducer {
       // 设置消息投递模式（确认模式）
       channel.confirmSelect();
 
-      String exchangeName="kevin.policeman";
+      String exchangeName="kevin.confirm";
       String routingkey="kevin.confirm.key";
 
       //设置消息属性
@@ -63,4 +64,6 @@ public class Confirmproducer {
        * 注意：这里不能使用channel.close()，否则消息无法接收确认了
        * ***/
   }
+
+
 }

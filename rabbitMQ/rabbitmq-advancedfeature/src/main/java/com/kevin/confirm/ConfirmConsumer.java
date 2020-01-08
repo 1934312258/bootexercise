@@ -17,11 +17,11 @@ public class ConfirmConsumer {
   public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
       //创建连接工厂
       ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
+      factory.setHost("192.168.248.1");
       factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
+      factory.setVirtualHost("/");
+      factory.setUsername("guest");
+      factory.setPassword("guest");
       factory.setConnectionTimeout(100000);
 
       //创建连接

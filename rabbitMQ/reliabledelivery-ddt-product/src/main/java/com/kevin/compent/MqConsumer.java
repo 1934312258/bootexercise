@@ -49,7 +49,6 @@ public class MqConsumer {
         MessageBo messageBo=mapper.readValue(message.getBody(),MessageBo.class);
         log.info("库存服务product====》消费消息：{}",messageBo);
         long deliveryTag=message.getMessageProperties().getDeliveryTag();
-
         try{
             //更新消息表与业务表
             service.updateProductStore(messageBo);
@@ -93,6 +92,7 @@ public class MqConsumer {
             }
         }else{
             log.warn("请不要重复消费消息{}",messageBo);
+            //此处改为签收可能更好一些，因为库存已经扣减，没必要重新发送消息或者人工补偿
             channel.basicReject(deliveryTag,false);
         }
     }

@@ -1,6 +1,8 @@
 package com.kevin.confirm;
 
 import com.rabbitmq.client.ConfirmListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate.ConfirmCallback;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 
 import java.io.IOException;
 
@@ -9,7 +11,7 @@ import java.io.IOException;
  * @date 2019-11-10 21:25
  * @description todo
  **/
-public class KevinConfirmListener implements ConfirmListener {
+public class KevinConfirmListener implements ConfirmListener{
     /**
      *
      * @param deliveryTag 唯一消息Id

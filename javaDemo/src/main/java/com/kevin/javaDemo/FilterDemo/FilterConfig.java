@@ -24,6 +24,5 @@ public class FilterConfig {
         urls.add("/*");
         registrationBean.setUrlPatterns(urls);
         return registrationBean;
-
     }
 }

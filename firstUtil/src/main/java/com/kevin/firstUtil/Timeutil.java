@@ -184,6 +184,23 @@ public class Timeutil {
 
         //日期字符串之间的转换
         //字符串转日期,DateTimeFormatter有已经定义好的格式，暂不熟悉，可以使用自定义格式
+        /**
+         *ISO_LOCAL_DATE     yyyy-MM-dd
+         *ISO_OFFSET_DATE     yyyy-MM-dd+offset
+         *ISO_DATE             yyyy-MM-dd or yyyy-MM-dd+offset
+         * ISO_LOCAL_TIME      HH:mm or HH:mm:ss
+         * ISO_OFFSET_TIME     HH:mm+offset or HH:mm:ss+offset
+         * ISO_TIME            HH:mm or HH:mm:ss+offset
+         * ISO_LOCAL_DATE_TIME   yyyy-MM-ddTHH:mm:ss
+         * ISO_OFFSET_DATE_TIME  yyyy-MM-ddTHH:mm:ss+offset
+         * ISO_ZONED_DATE_TIME   yyyy-MM-ddTHH:mm:ss+offset[zone]
+         * ISO_ORDINAL_DATE      yyyy-days
+         * ISO_WEEK_DATE         yyyy-week-days
+         * ISO_INSTANT           yyyy-MM-ddTHH:mm:ssZ
+         * BASIC_ISO_DATE        yyyyMMdd
+         * RFC_1123_DATE_TIME    Tue,3Jun2008 11:00:00 GMT
+         *
+        **/
         LocalDate localDate=LocalDate.parse("20140112", DateTimeFormatter.BASIC_ISO_DATE);
         //自定义解析格式,MMM代表月份的****英文缩写，本机目前为中文格式
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MMM dd yyyy");

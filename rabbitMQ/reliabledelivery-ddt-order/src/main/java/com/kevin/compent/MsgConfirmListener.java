@@ -5,7 +5,7 @@ import com.kevin.enumration.MsgstatusEnum;
 import com.kevin.mapper.MsgContentMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ public class MsgConfirmListener implements RabbitTemplate.ConfirmCallback {
     private MsgContentMapper mapper;
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause){
-        String msgId=correlationData.getId();//即correlationId
+        String msgId=correlationData.getId(); //即correlationId
         if(ack){
           log.info("消息Id：{}对应的消息被broker签收成功",msgId);
           updateMsgStatusWithAck(msgId);
