@@ -1,5 +1,6 @@
 package com.kevin;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author kevin
@@ -16,7 +18,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description todo
  **/
 public class Exercise {
+
   public static void main(String[] args) throws Exception {
+      A a=new A();
+      B b=new B();
+      a.setName("kevin");
+      b.setName("kevin1");
+    System.out.println(a.getName()+b.getName());
+
    Period period=Period.between(LocalDate.now(),LocalDate.now());
 //    System.out.println(period.getDays());
 //    System.out.println(1<<1);
@@ -36,7 +45,14 @@ public class Exercise {
     System.out.println(list.get(0)+"====="+list.get(2));
     String str="qeewtwl";
     String s =str.substring(str.indexOf("l")+1);
-    System.out.println(s+"======="+s.length());
+    System.out.println(s+"================================"+s.length());
+
+     System.out.println(MyDay.MONDAY.getCode());
+      System.out.println(MyDay.MONDAY.getName());
+      System.out.println(MyDay.MONDAY.toString());
+      System.out.println(MyDay.MONDAY);
+      ReentrantLock lock=new ReentrantLock(false);
+      lock.lock();
   }
   }
 

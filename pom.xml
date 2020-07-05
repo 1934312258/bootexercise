@@ -11,6 +11,7 @@
         <module>aaaaa</module>
         <module>rabbitMQ</module>
         <module>netty</module>
+        <module>oldone</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -77,6 +78,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.amqp</groupId>-->
@@ -99,6 +105,10 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 
