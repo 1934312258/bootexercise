@@ -2,7 +2,6 @@ package com.kevin.javaDemo.lambda;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class LambdaStreamDemo {
         peoples.add(new People("K.O2", 22, new Date()));
         peoples.add(new People("K.O6", 26, new Date()));
 
-        list=Arrays.asList(0,1,2,3,4,5,6,7,8,9);
+        list=Arrays.asList(0,1,2,3,4,5,6,7,8,9,15,13,14,23,11,23);
     }
 
     /**
@@ -127,15 +126,6 @@ public class LambdaStreamDemo {
     }
 
     /**
-     * 求人平均年龄
-     */
-    @Test
-    public void averagingAgeSuccess () {
-        Double avgAge = peoples.stream().collect(Collectors.averagingInt(People::getAge));
-        System.out.println(avgAge);
-    }
-
-    /**
      * 按年龄排序
      */
     @Test
@@ -200,24 +190,29 @@ public class LambdaStreamDemo {
      @Test
      public void sortedTest(){
          //自然排序
-         peoples.stream()
+         list.forEach(System.out::print);
+         List list1=list.stream()
                  .sorted()
                  .collect(Collectors.toList());
+          System.out.println();
+         list1.forEach(System.out::print);
+         System.out.println();
          //定制排序
-         peoples.stream()
+         peoples=peoples.stream()
                  .sorted((a,b)->{
                      if(a.getAge()>b.getAge()){
                         return 1;
-                     }else if(a.getAge()>b.getAge()){
+                     }else if(a.getAge()<b.getAge()){
                          return -1;
                      }else{
                          return 0;
                      }
                  })
                  .collect(Collectors.toList());
+         peoples.stream().map(People::getAge).forEach(System.out::println);
 
          //逆序排列
-         peoples.stream().sorted(Comparator.comparing(People::getAge).reversed());
+         peoples.stream().sorted(Comparator.comparing(People::getAge).reversed()).map(People::getAge).forEach(System.out::println);
      }
 
     /**

@@ -17,6 +17,7 @@ import java.io.IOException;
  * filter中无法使用注入的bean，既无法使用@Autowired注解，在spring中，web应用的启动顺序是listener->filter->servelt
  * 首先初始化listener然后初始化filter，然后才是dispathServelt的初始化，因此当filter里注入一个注解的bean时，就会注入失败
  * 因为filter初始化时，注解的bean还没初始化
+ * https://www.toutiao.com/i6727212676704895499/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1594082869&app=news_article&utm_source=weixin&utm_medium=toutiao_android&use_new_style=1&req_id=2020070708474801002607602339197D04&group_id=6727212676704895499
  **/
 
 public class TimeFilter implements Filter {

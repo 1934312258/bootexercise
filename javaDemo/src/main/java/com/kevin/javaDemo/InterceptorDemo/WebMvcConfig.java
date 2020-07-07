@@ -11,6 +11,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
+        //拦截所有对应路径下的请求
         registry.addInterceptor(timeInterceptor).addPathPatterns("/user/*");
     }
 }
