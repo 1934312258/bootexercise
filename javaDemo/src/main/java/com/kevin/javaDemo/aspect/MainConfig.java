@@ -15,8 +15,8 @@ public class MainConfig {
 
 
         @Bean
-        public Calculate calculate() {
-            return new Calculate();
+        public KevinCalculate calculate() {
+            return new KevinCalculate();
         }
 
         @Bean
