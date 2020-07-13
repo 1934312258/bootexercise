@@ -81,7 +81,7 @@ import java.util.Enumeration;
  * **/
 @Aspect
 public class KevinLogAspect {
-    @Pointcut("execution(* com.kevin.javaDemo.aspect.KevinLogAspect.*(..))")
+    @Pointcut("execution(* com.kevin.javaDemo.aspect.KevinCalculate.*(..))")
     public void pointCut(){};
     /**
       * @param
@@ -104,25 +104,25 @@ public class KevinLogAspect {
         //获取目标方法的参数信息
         Object[]objects=joinpoint.getArgs();
         //获取代理类信息
-        joinpoint.getThis();
+        Object thi=joinpoint.getThis();
         //获取代理的目标对象
-        joinpoint.getTarget();
+        Object target=joinpoint.getTarget();
         //通知的签名
         Signature signature=joinpoint.getSignature();
         //被代理的方法
         String methodName=signature.getName();
-        //代理类的名字
+        //被代理类的名字com.kevin.javaDemo.aspect.KevinCalculate
         String className=signature.getDeclaringTypeName();
-        //aop代理类的类信息
+        //aop被代理类的类信息com.kevin.javaDemo.aspect.KevinCalculate
         Class clas=signature.getDeclaringType();
         //获取RequestAttributes
-        RequestAttributes requestAttributes= RequestContextHolder.getRequestAttributes();
-        //从RequestAttributes中获取HttpServletRequest的信息
-        HttpServletRequest request= (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
-        //获取session
-        HttpSession session= (HttpSession) requestAttributes.resolveReference(RequestAttributes.REFERENCE_SESSION);
-        //获取请求参数
-        Enumeration<String>enumeration=request.getParameterNames();
+//        RequestAttributes requestAttributes= RequestContextHolder.getRequestAttributes();
+//        //从RequestAttributes中获取HttpServletRequest的信息
+//        HttpServletRequest request= (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
+//        //获取session
+//        HttpSession session= (HttpSession) requestAttributes.resolveReference(RequestAttributes.REFERENCE_SESSION);
+//        //获取请求参数
+//        Enumeration<String>enumeration=request.getParameterNames();
         System.out.println("执行目标方法【"+methodName+"】之前执行<前置通知，入参>"+ Arrays.asList(joinpoint.getArgs()));
     }
 
