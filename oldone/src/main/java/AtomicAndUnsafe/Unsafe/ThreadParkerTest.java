@@ -21,7 +21,7 @@ public class ThreadParkerTest {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-       // LockSupport.unpark(t);//唤醒指定的线程
+        // LockSupport.unpark(t);//唤醒指定的线程
 
         //拿出票据使用
         LockSupport.park();

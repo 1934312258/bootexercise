@@ -15,22 +15,22 @@ import java.util.concurrent.TimeoutException;
  **/
 public class DirectConsumer2 {
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
-    // 创建连接工厂
-    ConnectionFactory factory=new ConnectionFactory();
-    factory.setHost("192.168.159.8");
-    factory.setPort(5672);
-    factory.setUsername("kevin");
-    factory.setPassword("kevin");
+        // 创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.159.8");
+        factory.setPort(5672);
+        factory.setUsername("kevin");
+        factory.setPassword("kevin");
 
-    //创建连接
-    Connection connection=factory.newConnection();
-    //创建一个channel
-    Channel channel=connection.createChannel();
+        //创建连接
+        Connection connection = factory.newConnection();
+        //创建一个channel
+        Channel channel = connection.createChannel();
 
-    String exchangeName="kevin.directChange";
-    String exchangrType="kevin.directQueue";
-    String queueName="kevin.directQueue";
-    String routingKey="kevin.directChange.key";
+        String exchangeName = "kevin.directChange";
+        String exchangrType = "kevin.directQueue";
+        String queueName = "kevin.directQueue";
+        String routingKey = "kevin.directChange.key";
 /**
  * 声明一个交换机
  * type：交换机的类型，常见的有direct，fanout扇形交换机，topic
@@ -40,7 +40,7 @@ public class DirectConsumer2 {
  * arguments：其他一些结构化的参数，比如：alternate-exchange
  *
  * */
-        channel.exchangeDeclare(exchangeName,exchangrType,true,false,null);
+        channel.exchangeDeclare(exchangeName, exchangrType, true, false, null);
 
         /**
          * 声明一个队列
@@ -48,20 +48,20 @@ public class DirectConsumer2 {
          * autodelete：表示表示没有程序和队列建立连接，那么就会自动删除队列
          *
          * */
-        channel.queueDeclare(queueName,true,false,false,null);
+        channel.queueDeclare(queueName, true, false, false, null);
 
         //队列与交换机绑定
-        channel.queueBind(queueName,exchangeName,routingKey);
+        channel.queueBind(queueName, exchangeName, routingKey);
 
         //创建一个消费者
-        QueueingConsumer consumer=new QueueingConsumer(channel);
+        QueueingConsumer consumer = new QueueingConsumer(channel);
 
-        channel.basicConsume(queueName,true,consumer);
+        channel.basicConsume(queueName, true, consumer);
 
-        while (true){
-            QueueingConsumer.Delivery delivery=consumer.nextDelivery();
-            String message=new String(delivery.getBody());
-            System.out.println("消费信息--"+message);
+        while (true) {
+            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+            String message = new String(delivery.getBody());
+            System.out.println("消费信息--" + message);
         }
 
     }

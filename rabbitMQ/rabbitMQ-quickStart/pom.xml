@@ -12,7 +12,7 @@
     <artifactId>rabbitMQ-quickStart</artifactId>
     <dependencyManagement>
         <dependencies>
-            
+
         </dependencies>
 
     </dependencyManagement>

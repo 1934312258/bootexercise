@@ -16,8 +16,8 @@ import java.util.concurrent.ConcurrentMap;
  **/
 public class CacheLoader {
     //存放所有的注册存活的channel
-    public static ChannelGroup group=new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    public static ChannelGroup group = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     //以用户id为key，具体的的channel为value，用于一对一发送消息
-    public static Map<Long, Channel> channelMap=new ConcurrentHashMap<>();
+    public static Map<Long, Channel> channelMap = new ConcurrentHashMap<>();
 
 }

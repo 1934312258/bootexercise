@@ -16,28 +16,28 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @description todo
  **/
 public class MyClient {
-  public static void main(String[] args) {
-      EventLoopGroup group=new NioEventLoopGroup();
-      Bootstrap bootstrap=new Bootstrap();
-      try {
-      bootstrap.group(group)
-              .channel(NioSocketChannel.class)
-              .handler(new ChannelInitializer<SocketChannel>() {
-                  @Override
-                  protected void initChannel(SocketChannel ch) throws Exception {
-                      ChannelPipeline pipeline=ch.pipeline();
-                      pipeline.addLast(new MyMessageEncoder());
-                      pipeline.addLast(new MyClientHandler());
-                  }
-              });
-      System.out.println("netty client start");
-      ChannelFuture future=bootstrap.connect("127.0.0.1",9000).sync();
+    public static void main(String[] args) {
+        EventLoopGroup group = new NioEventLoopGroup();
+        Bootstrap bootstrap = new Bootstrap();
+        try {
+            bootstrap.group(group)
+                    .channel(NioSocketChannel.class)
+                    .handler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+                            ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast(new MyMessageEncoder());
+                            pipeline.addLast(new MyClientHandler());
+                        }
+                    });
+            System.out.println("netty client start");
+            ChannelFuture future = bootstrap.connect("127.0.0.1", 9000).sync();
 
-          future.channel().closeFuture().sync();
-      } catch (InterruptedException e) {
-          e.printStackTrace();
-      }finally{
-          group.shutdownGracefully();
-      }
-  }
+            future.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            group.shutdownGracefully();
+        }
+    }
 }

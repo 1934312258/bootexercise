@@ -9,7 +9,8 @@ public class MyMessageProtocol {
     //定义一次发送包体的长度
     private int len;
     //一次发送包体的内容
-    private byte[]content;
+    private byte[] content;
+
     public int getLen() {
         return len;
     }
@@ -25,7 +26,6 @@ public class MyMessageProtocol {
     public void setContent(byte[] content) {
         this.content = content;
     }
-
 
 
 }

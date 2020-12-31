@@ -14,10 +14,10 @@ public class MyServerHandler extends SimpleChannelInboundHandler<MyMessageProtoc
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MyMessageProtocol msg) throws Exception {
-       // System.out.println("========服务端接收到的消息如下======");
-       // System.out.println("长度="+msg.getLen());
-        System.out.println("内容="+new String(msg.getContent(), CharsetUtil.UTF_8));
-       // System.out.println("服务端接收到消息包数量"+ (++this.count));
+        // System.out.println("========服务端接收到的消息如下======");
+        // System.out.println("长度="+msg.getLen());
+        System.out.println("内容=" + new String(msg.getContent(), CharsetUtil.UTF_8));
+        // System.out.println("服务端接收到消息包数量"+ (++this.count));
     }
 
     @Override

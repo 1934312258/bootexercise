@@ -6,7 +6,8 @@
 <mapper namespace="com.kevin.mapper.MsgContentMapper">
 
     <insert id="saveMsgContent" parameterType="com.kevin.entity.MessageContent">
-        INSERT INTO message_content(msg_id,create_time,update_time,msg_status,exchange,routing_key,err_cause,order_no,max_retry,current_retry,product_no)
+        INSERT INTO
+        message_content(msg_id,create_time,update_time,msg_status,exchange,routing_key,err_cause,order_no,max_retry,current_retry,product_no)
         VALUES(#{msgId},#{createTime},#{updateTime},#{msgStatus},#{exchange},#{routingKey},#{errCause},#{orderNo},#{maxRetry},#{currentRetry},#{productNo})
     </insert>
 

@@ -12,17 +12,18 @@ public class CyclicBarrierTest implements Runnable {
     private CyclicBarrier cyclicBarrier;
     private int index;
 
-    public CyclicBarrierTest(CyclicBarrier cyclicBarrier,int index){
-        this.cyclicBarrier=cyclicBarrier;
-        this.index=index;
+    public CyclicBarrierTest(CyclicBarrier cyclicBarrier, int index) {
+        this.cyclicBarrier = cyclicBarrier;
+        this.index = index;
     }
+
     @Override
     public void run() {
-        System.out.println("index:"+index);
+        System.out.println("index:" + index);
         index--;
         try {
             cyclicBarrier.await();
-      System.out.println(index+"开始处理任务");
+            System.out.println(index + "开始处理任务");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {

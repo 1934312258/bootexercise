@@ -5,8 +5,7 @@ import com.kevin.entity.OrderInfo;
 public interface OrderInfoMapper {
     int saveOrderInfo(OrderInfo info);
 
-    int updateOrderStatusById(long orderNo,Integer orderStatus);
-
+    int updateOrderStatusById(long orderNo, Integer orderStatus);
 
 
 }

@@ -13,7 +13,7 @@ public class LongToByteEncoder extends MessageToByteEncoder<Long> {
     @Override
     protected void encode(ChannelHandlerContext channelHandlerContext, Long msg, ByteBuf out) throws Exception {
         System.out.println("LongToByteEncoder encoder被调用");
-        System.out.println("msg="+msg);
+        System.out.println("msg=" + msg);
         out.writeLong(msg);
     }
 }

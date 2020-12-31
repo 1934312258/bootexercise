@@ -26,7 +26,9 @@ import java.util.Date;
 @Component
 @Slf4j
 public class MqConsumer {
-    /**队列名称*/
+    /**
+     * 队列名称
+     */
     public static final String ORDER_TO_CALLBACK_QUEUE_NAME = "order-to-callback.queue";
 
 
@@ -36,20 +38,21 @@ public class MqConsumer {
 
     /**
      * 没有加分布式锁的版本,可能存在重复消费问题
+     *
      * @param message
      * @param channel
      * @throws java.io.IOException
      */
-    @RabbitListener(queues={ORDER_TO_CALLBACK_QUEUE_NAME})
+    @RabbitListener(queues = {ORDER_TO_CALLBACK_QUEUE_NAME})
     @RabbitHandler
     public void consumerMsg(Message message, Channel channel) throws IOException {
-        ObjectMapper mapper=new ObjectMapper();
-        MessageBo messageBo=mapper.readValue(message.getBody(),MessageBo.class);
-        log.info("库存服务product====》消费消息：{}",messageBo);
-        long deliveryTag=message.getMessageProperties().getDeliveryTag();
+        ObjectMapper mapper = new ObjectMapper();
+        MessageBo messageBo = mapper.readValue(message.getBody(), MessageBo.class);
+        log.info("库存服务product====》消费消息：{}", messageBo);
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
 
-        log.info("消费确认消息：{}",messageBo);
-        MessageContent content=new MessageContent();
+        log.info("消费确认消息：{}", messageBo);
+        MessageContent content = new MessageContent();
         content.setMsgId(messageBo.getMsgId());
         content.setOrderNo(messageBo.getOrderNo());
         content.setProductNo(messageBo.getProductNo());
@@ -64,32 +67,32 @@ public class MqConsumer {
         this.mapper.saveMsgContent(content);
 
         //签收消息
-        channel.basicAck(deliveryTag,false);
+        channel.basicAck(deliveryTag, false);
     }
 
-    @RabbitListener(queues={MqConst.ORDER_TO_PRODUCT_DELAY_QUEUE_NAME})
+    @RabbitListener(queues = {MqConst.ORDER_TO_PRODUCT_DELAY_QUEUE_NAME})
     @RabbitHandler
-    public void consumerMsgWithLock(Message message,Channel channel) throws IOException {
-        ObjectMapper mapper=new ObjectMapper();
-        MessageBo messageBo=mapper.readValue(message.getBody(),MessageBo.class);
-        long deliveryTag=message.getMessageProperties().getDeliveryTag();
+    public void consumerMsgWithLock(Message message, Channel channel) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        MessageBo messageBo = mapper.readValue(message.getBody(), MessageBo.class);
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
 
         //替换延时消息id
-        String msgId=messageBo.getMsgId().replace("_delay","");
+        String msgId = messageBo.getMsgId().replace("_delay", "");
 
-        MessageContent content=this.mapper.qryMessageContentById(msgId);
+        MessageContent content = this.mapper.qryMessageContentById(msgId);
 
-        log.info("消费延时消息：{}",messageBo.toString());
+        log.info("消费延时消息：{}", messageBo.toString());
 
         //表示消费者没有发送确认消息，需要回调生产者重新发送消息
-        if(content==null){
+        if (content == null) {
             //回调订单服务，重新发送消息
-            RestTemplate template=new RestTemplate();
-            template.postForEntity("http://localhost:8080/retryMsg",messageBo,String.class);
+            RestTemplate template = new RestTemplate();
+            template.postForEntity("http://localhost:8080/retryMsg", messageBo, String.class);
         }
 
         //签收消息
-        channel.basicAck(deliveryTag,false);
+        channel.basicAck(deliveryTag, false);
 
     }
 }

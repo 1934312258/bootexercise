@@ -8,26 +8,31 @@ import java.util.Date;
  * @description todo
  **/
 public class People {
-    int age;
+    Integer age;
     String name;
     String id;
     Date brith;
-    public People(String id,int age,Date brith){
-        this.age=age;
-        this.brith=brith;
-        this.id=id;
-    }
 
-    public People getThis(){
-        return this;
-    }
-
-    public Date getBrith() {
-        return brith;
-    }
-
-    public void setBrith(Date brith) {
+    public People(String id, Integer age, String name, Date brith) {
+        this.age = age;
         this.brith = brith;
+        this.id = id;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -38,19 +43,11 @@ public class People {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBrith() {
+        return brith;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setBrith(Date brith) {
+        this.brith = brith;
     }
 }

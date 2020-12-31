@@ -14,33 +14,33 @@ import java.util.concurrent.TimeoutException;
  * @description todo
  **/
 public class ReturnListenerConsumer {
-  public static void main(String[] args) throws IOException, TimeoutException {
-      //创建连接工厂
-      ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
-      factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
-      factory.setConnectionTimeout(100000);
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.159.8");
+        factory.setPort(5672);
+        factory.setVirtualHost("kevin");
+        factory.setUsername("kevin");
+        factory.setPassword("kevin");
+        factory.setConnectionTimeout(100000);
 
-      //创建连接
-      Connection connection=factory.newConnection();
-      //创建一个channel
-      Channel channel=connection.createChannel();
+        //创建连接
+        Connection connection = factory.newConnection();
+        //创建一个channel
+        Channel channel = connection.createChannel();
 
-      String exchangeName="kevin.return.direct";
-      channel.exchangeDeclare(exchangeName,"direct",true,false,null);
+        String exchangeName = "kevin.return.direct";
+        channel.exchangeDeclare(exchangeName, "direct", true, false, null);
 
-      String queueName="kevin.return.queue";
-      channel.queueDeclare(queueName,true,false,false,null);
+        String queueName = "kevin.return.queue";
+        channel.queueDeclare(queueName, true, false, false, null);
 
-      String routingkey="kevin.return.key.ok";
-      channel.queueBind(queueName,exchangeName,routingkey);
+        String routingkey = "kevin.return.key.ok";
+        channel.queueBind(queueName, exchangeName, routingkey);
 
-      QueueingConsumer consumer=new QueueingConsumer(channel);
+        QueueingConsumer consumer = new QueueingConsumer(channel);
 
-      channel.basicConsume(queueName,true,consumer);
+        channel.basicConsume(queueName, true, consumer);
 
-  }
+    }
 }

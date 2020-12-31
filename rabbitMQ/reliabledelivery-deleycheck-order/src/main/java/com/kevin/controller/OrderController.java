@@ -30,7 +30,7 @@ public class OrderController {
 
     @RequestMapping("/saveOrder")
     public String saveOrder() throws JsonProcessingException {
-        OrderInfo info=new OrderInfo();
+        OrderInfo info = new OrderInfo();
         info.setProductNo(1);
         info.setOrderNo(System.currentTimeMillis());
         info.setCreateTime(new Date());
@@ -39,12 +39,12 @@ public class OrderController {
         info.setUserName("kevin");
 
         service.saveOrderInfoWithMessage(info);
-        return  "ok";
+        return "ok";
     }
 
     @RequestMapping("/retryMsg")
-    public String retryMsg(@RequestBody MessageBo message){
-        log.info("消息重新发送：{}",message);
+    public String retryMsg(@RequestBody MessageBo message) {
+        log.info("消息重新发送：{}", message);
 
         sender.sendMsg(message);
         sender.sendDelayMsg(message);

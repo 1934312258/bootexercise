@@ -14,13 +14,13 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class MainConfig {
 
 
-        @Bean
-        public KevinCalculate calculate() {
-            return new KevinCalculate();
-        }
+    @Bean
+    public KevinCalculate calculate() {
+        return new KevinCalculate();
+    }
 
-        @Bean
-        public KevinLogAspect kevinLogAspect() {
-            return new KevinLogAspect();
-        }
+    @Bean
+    public KevinLogAspect kevinLogAspect() {
+        return new KevinLogAspect();
+    }
 }

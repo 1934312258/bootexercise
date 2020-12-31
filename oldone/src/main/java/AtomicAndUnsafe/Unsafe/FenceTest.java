@@ -4,7 +4,7 @@ import AtomicAndUnsafe.utils.UnsafeInstance;
 import sun.misc.Unsafe;
 
 public class FenceTest {
-   static Unsafe unsafe= UnsafeInstance.ReflectGetUnsafe();
+    static Unsafe unsafe = UnsafeInstance.ReflectGetUnsafe();
 
     public static void main(String[] args) {
         unsafe.loadFence();//读屏障

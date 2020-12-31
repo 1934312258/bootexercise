@@ -7,23 +7,24 @@ import java.util.concurrent.CountDownLatch;
  * @date 2020-6-2 15:20
  * @description todo
  **/
-public class QueueTask implements  Runnable {
+public class QueueTask implements Runnable {
     private CountDownLatch countDownLatch;
 
-    public QueueTask(CountDownLatch countDownLatch){
-        this.countDownLatch=countDownLatch;
+    public QueueTask(CountDownLatch countDownLatch) {
+        this.countDownLatch = countDownLatch;
     }
+
     @Override
     public void run() {
         try {
-            System. out. println("开始在医院药房排队买药. . . . ");
-            Thread. sleep(5000);
-            System. out. println("排队成功， 可以开始缴费买药");
+            System.out.println("开始在医院药房排队买药. . . . ");
+            Thread.sleep(5000);
+            System.out.println("排队成功， 可以开始缴费买药");
         } catch (InterruptedException e) {
-            e. printStackTrace();
+            e.printStackTrace();
         } finally {
-      if (countDownLatch != null) {
-            countDownLatch.countDown();
+            if (countDownLatch != null) {
+                countDownLatch.countDown();
             }
         }
 

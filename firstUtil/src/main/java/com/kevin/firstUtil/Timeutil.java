@@ -62,7 +62,6 @@ public class Timeutil {
         //String str = "2019-09-05T02:19:20.373Z";
 
 
-
         //获取当前年月日
         LocalDate date = LocalDate.now();
 
@@ -124,14 +123,14 @@ public class Timeutil {
         Clock clock = Clock.systemDefaultZone();
         //clock.instant()获取当前日期时间，clock.millis()获取时间毫秒
         Clock clock1 = Clock.systemUTC();//世界协调时间
-        Clock clock2=Clock.system(ZoneId.of("Asia/Shanghai"));//获取上海时区时钟
+        Clock clock2 = Clock.system(ZoneId.of("Asia/Shanghai"));//获取上海时区时钟
         Clock c4 = Clock.fixed(Instant.now(), ZoneId.of("Asia/Shanghai"));// 固定上海时区时钟，一个定值
         Clock c5 = Clock.offset(clock1, Duration.ofSeconds(2)); // 相对于系统默认时钟两秒的时钟
         LocalDate.now(clock);//获取时区的时间
 
         //Instant类获取时间戳,默认UTC标准时间的时间戳，
         //相当于Date类且可以转换，Date.from(instant),Date.toInstant()
-        Instant instant=Instant.now();
+        Instant instant = Instant.now();
         instant.getEpochSecond();//精确到秒
         instant.toEpochMilli();//精确到毫秒
 
@@ -142,7 +141,7 @@ public class Timeutil {
         LocalTime a = LocalTime.now(zone);
         LocalDate b = LocalDate.now(zone1);
         LocalDateTime c = LocalDateTime.now(zone);
-        LocalDateTime c1=LocalDateTime.ofInstant(Instant.now(),ZoneId.systemDefault());
+        LocalDateTime c1 = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
         //转换时间为另一时区
         //直接加入时区即可获得相应时区的时间
         LocalDateTime dateTime = LocalDateTime.now(ZoneId.systemDefault());
@@ -152,10 +151,9 @@ public class Timeutil {
         ZonedDateTime zonedate = ZonedDateTime.of(LocalDateTime.now(), zone);
 
         //ZoneOffset类用于表示时区,与GMT或UTC标准时区的差异
-        ZoneOffset zoneOffset=ZoneOffset.of("+02:00");
+        ZoneOffset zoneOffset = ZoneOffset.of("+02:00");
         //只显示默认时区时间与偏移量，ZonedDateTime还可以显示时区
-        OffsetDateTime offsetDateTime=OffsetDateTime.of(LocalDateTime.now(),zoneOffset);
-
+        OffsetDateTime offsetDateTime = OffsetDateTime.of(LocalDateTime.now(), zoneOffset);
 
 
         //计算两个日期之间间隔的天数、月数、年数
@@ -165,21 +163,20 @@ public class Timeutil {
         period.getMonths();
         period.getYears();
         //计算两个日期的时间间隔，天、时、分、毫秒、纳秒，日期之间的差值以秒存储，通过getSecond获得
-        Duration duration=Duration.between(LocalDateTime.of(2019,9,23,5,11,56,132),dateTime);
-        Long days1=duration.toDays();
-        Long hours=duration.toHours();
+        Duration duration = Duration.between(LocalDateTime.of(2019, 9, 23, 5, 11, 56, 132), dateTime);
+        Long days1 = duration.toDays();
+        Long hours = duration.toHours();
         duration.toMinutes();
         duration.toMillis();
         duration.toNanos();
         duration.getSeconds();
-        Duration d1=Duration.ofDays(1);//一天时差
+        Duration d1 = Duration.ofDays(1);//一天时差
         //ChronoUnit工具类底层封装Duration实现日期差
-        Long minute=ChronoUnit.MINUTES.between(LocalDateTime.of(2019,9,23,5,11,56,132),dateTime);
+        Long minute = ChronoUnit.MINUTES.between(LocalDateTime.of(2019, 9, 23, 5, 11, 56, 132), dateTime);
 
 
         //判断是否为闰年
-        Boolean leapYear=date.isLeapYear();
-
+        Boolean leapYear = date.isLeapYear();
 
 
         //日期字符串之间的转换
@@ -200,16 +197,16 @@ public class Timeutil {
          * BASIC_ISO_DATE        yyyyMMdd
          * RFC_1123_DATE_TIME    Tue,3Jun2008 11:00:00 GMT
          *
-        **/
-        LocalDate localDate=LocalDate.parse("20140112", DateTimeFormatter.BASIC_ISO_DATE);
+         **/
+        LocalDate localDate = LocalDate.parse("20140112", DateTimeFormatter.BASIC_ISO_DATE);
         //自定义解析格式,MMM代表月份的****英文缩写，本机目前为中文格式
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MMM dd yyyy");
-        LocalDate localDate1=LocalDate.parse("九月 23 2032",formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        LocalDate localDate1 = LocalDate.parse("九月 23 2032", formatter);
 
         //日期转换为字符串MMM为中文月份
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("M d yyyy hh:mm a");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M d yyyy hh:mm a");
         //String string=dateTime.format(dateTimeFormatter);
-        String string=LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        String string = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         /////*****当不确定月份或者天有没有补零时，可以使用M d yyyy格式解析日期
         String str = "2019-09-05T02:19:20.373";
@@ -217,16 +214,16 @@ public class Timeutil {
         LocalDateTime.parse(str);
         //当字符串后面有Z时，需要替换掉Z,或者先使用ZonedDateTime解析再转为LocalDateTime
         String str1 = "2019-09-05T02:19:20.373Z";
-        ZonedDateTime adt=ZonedDateTime.parse(str1);
-        LocalDateTime ld=adt.toLocalDateTime();
+        ZonedDateTime adt = ZonedDateTime.parse(str1);
+        LocalDateTime ld = adt.toLocalDateTime();
 
         String valueIn = "2019-02-19T23:28:04.434410+0800";
         //带有时区的日期应该使用次模板转换
         String formatIn = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
 
 
-       String str2="2012/12/12";
-        Calendar calendar=Calendar.getInstance();
+        String str2 = "2012/12/12";
+        Calendar calendar = Calendar.getInstance();
         calendar.getTime();
         System.out.println(instant.getEpochSecond());
         System.out.println(instant.toEpochMilli());

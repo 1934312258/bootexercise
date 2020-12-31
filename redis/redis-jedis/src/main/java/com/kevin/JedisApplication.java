@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 public class JedisApplication {
-  public static void main(String[] args) {
-      SpringApplication.run(JedisApplication.class);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(JedisApplication.class);
+    }
 }

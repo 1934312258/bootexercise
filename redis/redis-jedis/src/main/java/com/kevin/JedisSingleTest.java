@@ -10,13 +10,13 @@ import java.util.List;
 
 public class JedisSingleTest {
     public static void main(String[] args) {
-        JedisPoolConfig jedisPoolConfig=new JedisPoolConfig();
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxTotal(20);
         jedisPoolConfig.setMaxIdle(10);
         jedisPoolConfig.setMinIdle(5);
         //timeout这里既是连接超时又是读写超时，从jedis2.8开始有区分connectionTimeout与soTimeout的构造函数
-        JedisPool jedisPool=new JedisPool(jedisPoolConfig,"192.168.101.244",6379,3000,null);
-        Jedis jedis=null;
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, "192.168.101.244", 6379, 3000, null);
+        Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
             /**管道命令示例*/
@@ -43,13 +43,12 @@ public class JedisSingleTest {
                     "end" +
                     "return 0";
             Object object = jedis.eval(script, Arrays.asList("product_stock_10016"), Arrays.asList("10"));
-        }finally {
+        } finally {
             //这里关闭连接是将jedis连接归还给连接池
-           if(jedis!=null){
-               jedis.close();
-           }
+            if (jedis != null) {
+                jedis.close();
+            }
         }
-
 
 
     }

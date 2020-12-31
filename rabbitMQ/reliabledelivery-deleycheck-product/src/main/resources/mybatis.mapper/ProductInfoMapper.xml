@@ -5,8 +5,8 @@
 
 <mapper namespace="com.kevin.mapper.MsgContentMapper">
     <update id="updateProductStoreById" parameterType="Integer">
-         update product_info set product_num=product_num-1 where product_no=#{productNo} and product_num>0
-     </update>
+        update product_info set product_num=product_num-1 where product_no=#{productNo} and product_num>0
+    </update>
 
     <select id="getById" parameterType="Integer" resultType="com.kevin.entity.productInfo">
         select * from product_info where product_no =#{productNo}

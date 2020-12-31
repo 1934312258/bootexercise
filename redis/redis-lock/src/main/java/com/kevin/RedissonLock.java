@@ -14,30 +14,31 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 public class RedissonLock {
-    Logger logger= LoggerFactory.getLogger(RedissonLock.class);
+    Logger logger = LoggerFactory.getLogger(RedissonLock.class);
     @Autowired
     StringRedisTemplate redisTemplate;
     @Autowired
     Redisson redisson;
+
     @RequestMapping("/deduct_stock")
-    public String deductStock(){
-        String lockKey="product_001";
-        RLock redissonLock=redisson.getLock(lockKey);
-       try {
-           //加锁并实现锁续命
-           redissonLock.lock();
-         int stock=Integer.parseInt(redisTemplate.opsForValue().get("stock"));
-         if(stock>0){
-             int realStock=stock-1;
-             redisTemplate.opsForValue().set("stock",realStock+"");
-             System.out.println("扣减成功，剩余库存为："+realStock);
-             logger.info("扣减成功，剩余库存为{}"+realStock);
-         }else{
-             System.out.println("扣减库存失败");
-         }
-       }finally {
+    public String deductStock() {
+        String lockKey = "product_001";
+        RLock redissonLock = redisson.getLock(lockKey);
+        try {
+            //加锁并实现锁续命
+            redissonLock.lock();
+            int stock = Integer.parseInt(redisTemplate.opsForValue().get("stock"));
+            if (stock > 0) {
+                int realStock = stock - 1;
+                redisTemplate.opsForValue().set("stock", realStock + "");
+                System.out.println("扣减成功，剩余库存为：" + realStock);
+                logger.info("扣减成功，剩余库存为{}" + realStock);
+            } else {
+                System.out.println("扣减库存失败");
+            }
+        } finally {
             redissonLock.unlock();
-       }
-      return "end";
+        }
+        return "end";
     }
 }

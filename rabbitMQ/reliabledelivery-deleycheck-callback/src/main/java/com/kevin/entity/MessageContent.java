@@ -29,7 +29,7 @@ public class MessageContent {
 
     private Integer maxRetry;
 
-    private Integer currentRetry=0;
+    private Integer currentRetry = 0;
 
     private long productNo;
 

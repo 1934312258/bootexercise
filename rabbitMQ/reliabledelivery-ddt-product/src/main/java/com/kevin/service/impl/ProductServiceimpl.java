@@ -23,13 +23,13 @@ public class ProductServiceimpl implements ProductService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateProductStore(MessageBo message) {
-        boolean updateFlg=true;
-        try{
-        productInfo.updateProductStoreById(message.getProductNo());
-        //System.out.println(1/0);
-        }catch (Exception e){
-            log.error("更新数据库失败：{}",e);
-            throw new DefineException(0,"更新数据库异常");
+        boolean updateFlg = true;
+        try {
+            productInfo.updateProductStoreById(message.getProductNo());
+            //System.out.println(1/0);
+        } catch (Exception e) {
+            log.error("更新数据库失败：{}", e);
+            throw new DefineException(0, "更新数据库异常");
         }
         return updateFlg;
     }

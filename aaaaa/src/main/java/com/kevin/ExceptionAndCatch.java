@@ -6,19 +6,19 @@ package com.kevin;
  * @description todo
  */
 public class ExceptionAndCatch {
-  public static void main(String[] args) throws Exception {
-    int i = 1;
-    boolean flag = true;
-    while (flag) {
-      try {
-        System.out.println(i);
-        i++;
-        if (i == 10) {
-          throw new Exception("数据太大了");
+    public static void main(String[] args) throws Exception {
+        int i = 1;
+        boolean flag = true;
+        while (flag) {
+            try {
+                System.out.println(i);
+                i++;
+                if (i == 10) {
+                    throw new Exception("数据太大了");
+                }
+            } catch (Exception e) {
+                System.out.println("出错了");
+            }
         }
-      } catch (Exception e) {
-        System.out.println("出错了");
-      }
     }
-  }
 }

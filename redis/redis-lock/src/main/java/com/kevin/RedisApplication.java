@@ -11,9 +11,10 @@ public class RedisApplication {
     public static void main(String[] args) {
         SpringApplication.run(RedisApplication.class);
     }
+
     @Bean
-    public Redisson redisson(){
-        Config config=new Config();
+    public Redisson redisson() {
+        Config config = new Config();
         //单机
         config.useSingleServer().setAddress("redis://192.168.101.19:6379").setDatabase(0);
         //集群

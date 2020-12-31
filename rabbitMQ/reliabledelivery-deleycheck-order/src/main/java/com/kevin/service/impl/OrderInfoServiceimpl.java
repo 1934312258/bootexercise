@@ -34,10 +34,10 @@ public class OrderInfoServiceimpl implements OrderInfoService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveOrderInfo(OrderInfo info) {
-        try{
+        try {
             mapper.saveOrderInfo(info);
-        }catch (Exception e){
-            log.error("操作数据库失败：{}",e);
+        } catch (Exception e) {
+            log.error("操作数据库失败：{}", e);
             throw new RuntimeException("操作数据库失败");
         }
     }
@@ -45,13 +45,13 @@ public class OrderInfoServiceimpl implements OrderInfoService {
     @Override
     public void saveOrderInfoWithMessage(OrderInfo info) throws JsonProcessingException {
         //构建消息对象
-        MessageContent content=builderMessageContent(info.getOrderNo(),info.getProductNo());
+        MessageContent content = builderMessageContent(info.getOrderNo(), info.getProductNo());
 
         //保存数据库
         saveOrderInfo(info);
 
         //构建消息发送对象
-        MessageBo message=new MessageBo();
+        MessageBo message = new MessageBo();
         message.setMsgId(content.getMsgId());
         message.setOrderNo(content.getOrderNo());
         message.setProductNo(content.getProductNo());
@@ -65,9 +65,9 @@ public class OrderInfoServiceimpl implements OrderInfoService {
     }
 
 
-    private MessageContent builderMessageContent(long orderNo,Integer productNo){
-        MessageContent content=new MessageContent();
-        String msgId= UUID.randomUUID().toString();
+    private MessageContent builderMessageContent(long orderNo, Integer productNo) {
+        MessageContent content = new MessageContent();
+        String msgId = UUID.randomUUID().toString();
         content.setMsgId(msgId);
         content.setCreateTime(new Date());
         content.setUpdateTime(new Date());
@@ -77,6 +77,6 @@ public class OrderInfoServiceimpl implements OrderInfoService {
         content.setOrderNo(orderNo);
         content.setProductNo(productNo);
         content.setMaxRetry(MqConst.MSG_RETRY_COUNT);
-        return  content;
+        return content;
     }
 }

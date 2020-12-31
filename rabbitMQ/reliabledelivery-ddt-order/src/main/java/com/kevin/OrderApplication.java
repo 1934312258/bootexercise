@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableScheduling
 public class OrderApplication {
-  public static void main(String[] args) {
-      SpringApplication.run(OrderApplication.class);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(OrderApplication.class);
+    }
 }

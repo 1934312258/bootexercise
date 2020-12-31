@@ -34,11 +34,11 @@ public class RedisUtil {
     ZSetOperations zSetOperations;
 
 
-    void test1(){
+    void test1() {
         RedisConnectionUtils.unbindConnection(template.getConnectionFactory());
     }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-  }
+    }
 }

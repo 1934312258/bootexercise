@@ -15,9 +15,9 @@ public class KevinConfirmListener implements RabbitTemplate.ConfirmCallback {
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String s) {
-        if(ack){
+        if (ack) {
             System.out.println("签收成功");
         }
-    System.out.println(ack);
+        System.out.println(ack);
     }
 }

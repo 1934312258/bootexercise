@@ -21,7 +21,7 @@ public class OrderController {
 
     @RequestMapping("/saveOrder")
     public String saveOrder() throws JsonProcessingException {
-        OrderInfo info=new OrderInfo();
+        OrderInfo info = new OrderInfo();
         info.setOrderNo(System.currentTimeMillis());
         info.setCreateTime(new Date());
         info.setUpdateTime(new Date());

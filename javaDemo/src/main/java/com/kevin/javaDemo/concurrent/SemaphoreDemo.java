@@ -8,32 +8,33 @@ import java.util.concurrent.Semaphore;
  * @description todo
  **/
 public class SemaphoreDemo {
-  public static void main(String[] args) {
-      Semaphore semaphore=new Semaphore(2);
-      for(int i=0;i<5;++i){
-          new Thread(new Task(semaphore,"kevin"+i)).start();
-      }
-  }
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(2);
+        for (int i = 0; i < 5; ++i) {
+            new Thread(new Task(semaphore, "kevin" + i)).start();
+        }
+    }
 
-  static class Task extends Thread{
-      Semaphore semaphore;
-      public  Task(Semaphore semaphore,String tname){
-          this.semaphore=semaphore;
-          this.setName(tname);
-      }
+    static class Task extends Thread {
+        Semaphore semaphore;
 
-      @Override
-      public void run() {
-          try {
-              semaphore. acquire() ;
-              System.out.println(Thread.currentThread().getName()+": aquire() at time:"+System.currentTimeMillis() );
-              Thread. sleep(1000) ;
-              semaphore.release() ;
-              System. out. println(Thread.currentThread().getName()+": aquire() at time: "+System. currentTimeMillis() );
-          } catch (InterruptedException e) {
-              e. printStackTrace() ;
-          }
-      }
-      }
-  }
+        public Task(Semaphore semaphore, String tname) {
+            this.semaphore = semaphore;
+            this.setName(tname);
+        }
+
+        @Override
+        public void run() {
+            try {
+                semaphore.acquire();
+                System.out.println(Thread.currentThread().getName() + ": aquire() at time:" + System.currentTimeMillis());
+                Thread.sleep(1000);
+                semaphore.release();
+                System.out.println(Thread.currentThread().getName() + ": aquire() at time: " + System.currentTimeMillis());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
 

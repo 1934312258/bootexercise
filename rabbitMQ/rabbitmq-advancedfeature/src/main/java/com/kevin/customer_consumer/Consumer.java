@@ -17,15 +17,16 @@ import java.util.concurrent.TimeoutException;
  **/
 public class Consumer extends DefaultConsumer {
     private Channel channel;
+
     public Consumer(Channel channel) {
         super(channel);
     }
 
     @Override
     public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body) throws IOException {
-        System.out.println("consumerTag:"+consumerTag);
-        System.out.println("envelope:"+envelope);
-        System.out.println("properties:"+properties);
-        System.out.println("body:"+new String(body));
+        System.out.println("consumerTag:" + consumerTag);
+        System.out.println("envelope:" + envelope);
+        System.out.println("properties:" + properties);
+        System.out.println("body:" + new String(body));
     }
 }

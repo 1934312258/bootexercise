@@ -20,27 +20,28 @@ import java.util.List;
  **/
 public class AclTest {
     ZooKeeper zooKeeper;
+
     @Before
     public void init() throws IOException {
-        zooKeeper=new ZooKeeper("192.168.101.19",2181,event->{
+        zooKeeper = new ZooKeeper("192.168.101.19", 2181, event -> {
             System.out.println(event);
         });
     }
 
     @Test
     public void getAclTest1() throws KeeperException, InterruptedException {
-        List<ACL>acl= zooKeeper.getACL("/kevin",null);
+        List<ACL> acl = zooKeeper.getACL("/kevin", null);
         System.out.println(acl);
     }
 
     @Test
     public void setAclTest() throws KeeperException, InterruptedException {
-        List<ACL>list=new ArrayList<>();
-        int perm= Perms.ADMIN| Perms.READ|Perms.CREATE;
-        System.out.println("==============================="+perm);
-        list.add(new ACL(perm,new Id("world","192.168.101.100")));
-        list.add(new ACL(Perms.ADMIN,new Id("world","anyone")));
-        zooKeeper.setACL("/kevin",list,5);
-        System.out.println("==============================="+perm);
+        List<ACL> list = new ArrayList<>();
+        int perm = Perms.ADMIN | Perms.READ | Perms.CREATE;
+        System.out.println("===============================" + perm);
+        list.add(new ACL(perm, new Id("world", "192.168.101.100")));
+        list.add(new ACL(Perms.ADMIN, new Id("world", "anyone")));
+        zooKeeper.setACL("/kevin", list, 5);
+        System.out.println("===============================" + perm);
     }
 }

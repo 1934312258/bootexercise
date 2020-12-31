@@ -12,31 +12,32 @@ import java.util.stream.Collectors;
  **/
 public class EventMulticaster {
     private List<AbstractEventListener> listeners;
-    public EventMulticaster(List<AbstractEventListener> listeners){
-        this.listeners=listeners;
+
+    public EventMulticaster(List<AbstractEventListener> listeners) {
+        this.listeners = listeners;
     }
 
     //广播事件
-    public void multicastEvent(Event event){
+    public void multicastEvent(Event event) {
         //按照设置的顺序执行事件监听器
-        for(EventListener listener:listeners){
+        for (EventListener listener : listeners) {
             listener.OnEvent(event);
         }
     }
 
-  public static void main(String[] args) {
-    List<AbstractEventListener>list=new ArrayList<>();
-    list.add(new Test1EventListener(1));
-    //根据order做排序
-    list=list.stream().sorted(Comparator.comparing(AbstractEventListener::getOrder))
-                      .collect(Collectors.toList());
-    EventMulticaster eventMulticaster=new EventMulticaster(list);
+    public static void main(String[] args) {
+        List<AbstractEventListener> list = new ArrayList<>();
+        list.add(new Test1EventListener(1));
+        //根据order做排序
+        list = list.stream().sorted(Comparator.comparing(AbstractEventListener::getOrder))
+                .collect(Collectors.toList());
+        EventMulticaster eventMulticaster = new EventMulticaster(list);
 
-    //定义eventObject
-    Order order=new Order();
-    EventObject eventObject=new EventObject(order);
+        //定义eventObject
+        Order order = new Order();
+        EventObject eventObject = new EventObject(order);
 
-    //广播事件
-    eventMulticaster.multicastEvent(new OrderCallbackEvent(eventObject));
-  }
+        //广播事件
+        eventMulticaster.multicastEvent(new OrderCallbackEvent(eventObject));
+    }
 }

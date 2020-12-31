@@ -10,7 +10,7 @@ public interface MsgContentMapper {
 
     int updateMsgStatus(MessageContent content);
 
-    List<MessageContent> queryMsgs(@Param("msgStatus")Integer status,@Param("timeDiff")Integer timeDeff);
+    List<MessageContent> queryMsgs(@Param("msgStatus") Integer status, @Param("timeDiff") Integer timeDeff);
 
     void updateMsgRetryCount(String msgId);
 }

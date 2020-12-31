@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @description todo
  **/
 public class MainStart {
-  public static void main(String[] args) {
-      AnnotationConfigApplicationContext configApplicationContext=new AnnotationConfigApplicationContext(RabbitmqConfig.class);
-  }
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext(RabbitmqConfig.class);
+    }
 }

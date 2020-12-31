@@ -11,14 +11,15 @@ import java.net.UnknownHostException;
  * @description todo
  **/
 public class Agent {
-    private static Agent  ourInstance=new Agent();
-    private String server="192.168.101.19";
-    private static final String rootPath="/kevin";
-    private static final String servicePath=rootPath+"/service";
+    private static Agent ourInstance = new Agent();
+    private String server = "192.168.101.19";
+    private static final String rootPath = "/kevin";
+    private static final String servicePath = rootPath + "/service";
     private String nodePath;//当前节点路径kevin/service000000000001
     private Thread stateThread;
     private ZkClient zkClient;
-    public static Agent getInstance(){
+
+    public static Agent getInstance() {
         return ourInstance;
     }
 
@@ -37,8 +38,8 @@ public class Agent {
 //        return addr.getHostAddress();
 //    }
 
-    public void buildRoot(){
-        if(!zkClient.exists(rootPath)){
+    public void buildRoot() {
+        if (!zkClient.exists(rootPath)) {
             zkClient.createPersistent(rootPath);
         }
     }

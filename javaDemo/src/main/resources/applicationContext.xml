@@ -13,7 +13,8 @@
     <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
 
 
-    <bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <!-- 配置获取连接等待超时的时间 -->
         <property name="maxWait" value="60000"/>
@@ -67,15 +68,15 @@
 
     <!-- 数据源的路由选择-->
     <bean id="dataSource" class="com.kevin.javaDemo.aspect.annotation.DynamicDataSourceAspect">
-        <property name="writeDataSource" ref="dataSourceWrite" />
+        <property name="writeDataSource" ref="dataSourceWrite"/>
         <property name="readDataSources">
             <list>
-                <ref bean="dataSourceRead" />
-                <ref bean="dataSourceRead2" />
+                <ref bean="dataSourceRead"/>
+                <ref bean="dataSourceRead2"/>
             </list>
         </property>
         <!--轮询方式-->
-        <property name="readDataSourcePollPattern" value="1" />
+        <property name="readDataSourcePollPattern" value="1"/>
         <property name="defaultTargetDataSource" ref="dataSourceWrite"/>
     </bean>
 
@@ -95,7 +96,7 @@
     </bean>
 
     <!-- 配置数据库注解aop -->
-    <bean id="dynamicDataSourceAspect" class="com.kevin.javaDemo.aspect.annotation.DynamicDataSourceAspect" />
+    <bean id="dynamicDataSourceAspect" class="com.kevin.javaDemo.aspect.annotation.DynamicDataSourceAspect"/>
     <aop:config>
         <aop:aspect id="c" ref="dynamicDataSourceAspect">
             <aop:pointcut id="tx" expression="execution(* com.kevin.javaDemo.*.*(..))"/>

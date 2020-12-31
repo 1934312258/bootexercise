@@ -21,27 +21,28 @@ import java.time.format.DateTimeFormatter;
  **/
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     //GlobalEventExecutor.INSTANCE是全全局的事件执行器
-    private static ChannelGroup channelGroup=new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        Channel channel=ctx.channel();
+        Channel channel = ctx.channel();
         //将客户端加入聊天的信息推送给其他在线的客户端
         //该方法将channelGroup中所有的channel遍历，并发送消息
-        channelGroup.writeAndFlush("[客户端]"+channel.remoteAddress()+"上线了"+ LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)+"\n");
+        channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + "上线了" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n");
         //将当前的channel加入到channelGroup
         channelGroup.add(channel);
-        System.out.println(ctx.channel().remoteAddress()+"上线了"+"\n");
+        System.out.println(ctx.channel().remoteAddress() + "上线了" + "\n");
     }
+
     //表示channel处于不活动状态，提示离线了
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         //客户端下线后会自动的将channelGroup中的channel剔除
-        Channel channel=ctx.channel();
+        Channel channel = ctx.channel();
         //将客户端离开信息推送给当前在线的客户
-        channelGroup.writeAndFlush("[客户端]"+channel.remoteAddress()+"下线了"+"\n");
-        System.out.println("客户端"+channel.remoteAddress()+"下线了"+"\n");
-        System.out.println("channelGroup size"+channelGroup.size());
+        channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + "下线了" + "\n");
+        System.out.println("客户端" + channel.remoteAddress() + "下线了" + "\n");
+        System.out.println("channelGroup size" + channelGroup.size());
     }
 
     /**
@@ -54,19 +55,20 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //获取到当前的channel
-        Channel channel=ctx.channel();
+        Channel channel = ctx.channel();
         //这时我们遍历channelGroup，根据不同的情况，回送不同的消息
         channelGroup.forEach(ch -> {
-            if(channel!=ch){
-                ch.writeAndFlush("[客户端]"+channel.remoteAddress()+"发送了消息："+msg+"\n");
-            }else{//回显自己发送的消息给自己
-                ch.writeAndFlush("[自己]发送了消息："+msg+"\n");
+            if (channel != ch) {
+                ch.writeAndFlush("[客户端]" + channel.remoteAddress() + "发送了消息：" + msg + "\n");
+            } else {//回显自己发送的消息给自己
+                ch.writeAndFlush("[自己]发送了消息：" + msg + "\n");
             }
-                });
-       }
+        });
+    }
+
     //处理异常，一般需要关闭通道
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-       ctx.close();
+        ctx.close();
     }
 }

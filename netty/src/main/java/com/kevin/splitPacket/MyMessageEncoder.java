@@ -9,7 +9,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @date 2019-12-23 11:10
  * @description todo
  **/
-public class MyMessageEncoder  extends MessageToByteEncoder<MyMessageProtocol> {
+public class MyMessageEncoder extends MessageToByteEncoder<MyMessageProtocol> {
     @Override
     protected void encode(ChannelHandlerContext channelHandlerContext, MyMessageProtocol msg, ByteBuf out) throws Exception {
         System.out.println("MyMessageEncoder encoder 方法被调用");

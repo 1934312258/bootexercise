@@ -28,36 +28,34 @@ public class MsgSender implements InitializingBean {
     ConfirmListener listener;
 
     //订单消息
-    public void sendMsg(MessageBo message){
-        log.info("发送消息ID：{}",message.getMsgId());
+    public void sendMsg(MessageBo message) {
+        log.info("发送消息ID：{}", message.getMsgId());
 
-        CorrelationData data=new CorrelationData(message.getMsgId()+"_"+message.getOrderNo());
+        CorrelationData data = new CorrelationData(message.getMsgId() + "_" + message.getOrderNo());
 
         template.convertAndSend(MqConst.ORDER_TO_PRODUCT_EXCHANGE_NAME, MqConst.ORDER_TO_PRODUCT_ROUTING_KEY, message, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setHeader("x-delay",MqConst.DELAY_TIME);//设置延迟时间
+                message.getMessageProperties().setHeader("x-delay", MqConst.DELAY_TIME);//设置延迟时间
                 return message;
             }
         }, data);
     }
 
     //延迟消息
-    public void sendDelayMsg(MessageBo message){
-        log.info("发送消息的ID：{}",message.getMsgId());
-        CorrelationData data=new CorrelationData(message.getMsgId()+"_"+message.getOrderNo());
+    public void sendDelayMsg(MessageBo message) {
+        log.info("发送消息的ID：{}", message.getMsgId());
+        CorrelationData data = new CorrelationData(message.getMsgId() + "_" + message.getOrderNo());
 
-        template.convertAndSend(MqConst.ORDER_TO_PRODUCT_DELAY_EXCHANGE_NAME,MqConst.ORDER_TO_PRODUCT_DELAY_ROUTING_KEY,message,data);
+        template.convertAndSend(MqConst.ORDER_TO_PRODUCT_DELAY_EXCHANGE_NAME, MqConst.ORDER_TO_PRODUCT_DELAY_ROUTING_KEY, message, data);
     }
-
-
 
 
     @Override
     public void afterPropertiesSet() throws Exception {
         template.setConfirmCallback(listener);
         //设置消息转换器
-        Jackson2JsonMessageConverter converter=new Jackson2JsonMessageConverter();
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
         template.setMessageConverter(converter);
     }
 }

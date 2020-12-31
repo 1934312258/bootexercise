@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 public class ZookeeperAgentApplication {
-  public static void main(String[] args) {
-      SpringApplication.run(ZookeeperAgentApplication.class);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(ZookeeperAgentApplication.class);
+    }
 }

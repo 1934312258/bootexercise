@@ -9,13 +9,13 @@ import java.util.Map;
  * @description todo
  **/
 public class LoginVerifyMapping {
-    private static Map<String,Boolean>faceFunctionIsNeedLoginVerify=new HashMap<>();
+    private static Map<String, Boolean> faceFunctionIsNeedLoginVerify = new HashMap<>();
 
-    public static void  add(String functionName){
-        faceFunctionIsNeedLoginVerify.put(functionName,Boolean.TRUE);
+    public static void add(String functionName) {
+        faceFunctionIsNeedLoginVerify.put(functionName, Boolean.TRUE);
     }
 
-    public static Boolean get(String functionName){
+    public static Boolean get(String functionName) {
         return faceFunctionIsNeedLoginVerify.get(functionName);
     }
 }

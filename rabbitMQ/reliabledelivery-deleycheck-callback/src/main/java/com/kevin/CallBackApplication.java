@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 public class CallBackApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(CallBackApplication.class,args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(CallBackApplication.class, args);
+    }
 }

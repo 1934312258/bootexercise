@@ -9,17 +9,18 @@ import io.netty.handler.codec.http.FullHttpRequest;
  * @date 2019-12-31 15:23
  * @description todo
  **/
-public class HttpRequestHandler  extends SimpleChannelInboundHandler<FullHttpRequest> {
+public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
     //webSocket标识
     private final String wsUri;
 
-    public HttpRequestHandler(String wsUri){
-        this.wsUri=wsUri;
+    public HttpRequestHandler(String wsUri) {
+        this.wsUri = wsUri;
     }
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) throws Exception {
         //如果是WebSocket请求，请求地址uri等于wsUri,uri()返回端口号之后的路径
-        if(wsUri.equalsIgnoreCase(fullHttpRequest.uri())){
+        if (wsUri.equalsIgnoreCase(fullHttpRequest.uri())) {
             //将消息发送到下一个handler,fullHttpRequest.retain()方法返回的是当前的byteBuf
             ctx.fireChannelRead(fullHttpRequest.retain());
         }

@@ -12,7 +12,7 @@ public class zkClientTest {
     ZkClient zkClient;
 
     @Before
-    public void init(){
-        zkClient=new ZkClient("192.168.101.19",5,5);
+    public void init() {
+        zkClient = new ZkClient("192.168.101.19", 5, 5);
     }
 }

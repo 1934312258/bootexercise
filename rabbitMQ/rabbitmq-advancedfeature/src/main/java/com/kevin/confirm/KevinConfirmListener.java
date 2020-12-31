@@ -11,10 +11,9 @@ import java.io.IOException;
  * @date 2019-11-10 21:25
  * @description todo
  **/
-public class KevinConfirmListener implements ConfirmListener{
+public class KevinConfirmListener implements ConfirmListener {
     /**
-     *
-     * @param deliveryTag 唯一消息Id
+     * @param deliveryTag   唯一消息Id
      * @param multiple:是否批量
      * @throws IOException
      */
@@ -25,11 +24,11 @@ public class KevinConfirmListener implements ConfirmListener{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("当前时间："+System.currentTimeMillis()+"KevinConfirmListener handleAck:"+deliveryTag);
+        System.out.println("当前时间：" + System.currentTimeMillis() + "KevinConfirmListener handleAck:" + deliveryTag);
     }
 
     @Override
     public void handleNack(long deliveryTag, boolean multiple) throws IOException {
-        System.out.println("KevinConfirmListener handleAck:"+deliveryTag);
+        System.out.println("KevinConfirmListener handleAck:" + deliveryTag);
     }
 }

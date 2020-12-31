@@ -26,50 +26,51 @@ public class Confirmproducer implements InitializingBean {
 
     @Autowired
     KevinConfirmListener listener;
-  public static void main(String[] args) throws IOException, TimeoutException {
 
-      //创建连接工厂
-      ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.248.1");
-      factory.setPort(5672);
-      factory.setVirtualHost("/");
-      factory.setUsername("guest");
-      factory.setPassword("guest");
-      factory.setConnectionTimeout(100000);
+    public static void main(String[] args) throws IOException, TimeoutException {
 
-      //创建连接
-      Connection connection=factory.newConnection();
-      //创建一个channel
-      Channel channel=connection.createChannel();
+        //创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.248.1");
+        factory.setPort(5672);
+        factory.setVirtualHost("/");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
+        factory.setConnectionTimeout(100000);
 
-      // 设置消息投递模式（确认模式）
-      channel.confirmSelect();
+        //创建连接
+        Connection connection = factory.newConnection();
+        //创建一个channel
+        Channel channel = connection.createChannel();
 
-      String exchangeName="kevin.confirm";
-      String routingkey="kevin.confirm.key";
+        // 设置消息投递模式（确认模式）
+        channel.confirmSelect();
 
-      //设置消息属性
-      Map<String,Object>info=new HashMap<>();
-      info.put("name","kevin");
-      info.put("looklike","handsome");
+        String exchangeName = "kevin.confirm";
+        String routingkey = "kevin.confirm.key";
 
-      AMQP.BasicProperties properties=new AMQP.BasicProperties().builder()
-              .deliveryMode(2)
-              .correlationId(UUID.randomUUID().toString())
-              .timestamp(new Date())
-              .headers(info)
-              .build();
+        //设置消息属性
+        Map<String, Object> info = new HashMap<>();
+        info.put("name", "kevin");
+        info.put("looklike", "handsome");
+
+        AMQP.BasicProperties properties = new AMQP.BasicProperties().builder()
+                .deliveryMode(2)
+                .correlationId(UUID.randomUUID().toString())
+                .timestamp(new Date())
+                .headers(info)
+                .build();
 
 
-      for (int i=0;i<10;++i){
-          String message="new life";
-          channel.basicPublish(exchangeName,routingkey,properties,message.getBytes());
-      }
+        for (int i = 0; i < 10; ++i) {
+            String message = "new life";
+            channel.basicPublish(exchangeName, routingkey, properties, message.getBytes());
+        }
 
-      /***
-       * 注意：这里不能使用channel.close()，否则消息无法接收确认了
-       * ***/
-  }
+        /***
+         * 注意：这里不能使用channel.close()，否则消息无法接收确认了
+         * ***/
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

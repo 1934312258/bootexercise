@@ -15,8 +15,8 @@ public class KevinConfirmListener implements ConfirmCallback {
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        if(ack){
-          System.out.println("签收成功");
+        if (ack) {
+            System.out.println("签收成功");
         }
         System.out.println(ack);
     }

@@ -24,18 +24,18 @@ public class RabbitmqTest {
 
     @Test
     public void testMsgSender() throws JsonProcessingException {
-       //创建消息属性
-        Map<String,Object>info=new HashMap<>();
-        info.put("company","markor");
-        info.put("name","kevin");
+        //创建消息属性
+        Map<String, Object> info = new HashMap<>();
+        info.put("company", "markor");
+        info.put("name", "kevin");
 
-        Order order=new Order();
+        Order order = new Order();
         order.setOrderNo(UUID.randomUUID().toString());
         order.setUserName("kevin");
         order.setPayMoney(10000);
         order.setCreateDt(new Date());
-        ObjectMapper mapper=new ObjectMapper();
-        String orderJson=mapper.writeValueAsString(order);
-        sender.sendMsg(orderJson,info);
+        ObjectMapper mapper = new ObjectMapper();
+        String orderJson = mapper.writeValueAsString(order);
+        sender.sendMsg(orderJson, info);
     }
 }

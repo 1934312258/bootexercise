@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2019-11-12 9:08
  * @description todo
  **/
-@ConfigurationProperties( prefix = "spring.datasource.druid")
+@ConfigurationProperties(prefix = "spring.datasource.druid")
 public class DruidDataSourceProperties {
     private String username;
     private String password;

@@ -17,12 +17,12 @@ import java.util.Map;
 public class ChatServiceimpl implements ChatService {
     @Override
     public void register(ChannelHandlerContext ctx, Map<String, Object> msg) {
-        CacheLoader.channelMap.put(Long.parseLong(msg.get("userId").toString()),ctx.channel());
+        CacheLoader.channelMap.put(Long.parseLong(msg.get("userId").toString()), ctx.channel());
     }
 
     @Override
     public void singleSend(ChannelHandlerContext ctx, Map<String, Object> msg) {
-        long to=Long.parseLong(msg.get("to").toString());
+        long to = Long.parseLong(msg.get("to").toString());
         msg.remove("to");
         msg.remove("type");
         CacheLoader.channelMap.get(to).writeAndFlush(new TextWebSocketFrame());

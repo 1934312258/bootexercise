@@ -20,7 +20,7 @@ public class Test1EventListener extends AbstractEventListener {
     public void OnEvent(Event event) {
         System.out.println("监听事件执行器1开始执行");
         //获取事件持有的对象
-        EventObject eventObject=event.getEventObject();
+        EventObject eventObject = event.getEventObject();
         System.out.println((new Gson()).toJson(eventObject));
         //业务逻辑
     }

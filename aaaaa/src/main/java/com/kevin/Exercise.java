@@ -19,42 +19,42 @@ import java.util.concurrent.locks.ReentrantLock;
  **/
 public class Exercise {
 
-  public static void main(String[] args) throws Exception {
-      A a=new A();
-      B b=new B();
-      a.setName("kevin");
-      b.setName("kevin1");
-    System.out.println(a.getName()+b.getName());
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        B b = new B();
+        a.setName("kevin");
+        b.setName("kevin1");
+        System.out.println(a.getName() + b.getName());
 
-   Period period=Period.between(LocalDate.now(),LocalDate.now());
+        Period period = Period.between(LocalDate.now(), LocalDate.now());
 //    System.out.println(period.getDays());
 //    System.out.println(1<<1);
 
-    double pi=31415926;
-      DecimalFormat format=new DecimalFormat("00.00");
-      DecimalFormat format1=new DecimalFormat("圆周率，###米");
-    System.out.println(format.format(pi));
-    System.out.println(format1.format(pi));
-    System.out.println(format1.format(pi).getClass().getName());
+        double pi = 31415926;
+        DecimalFormat format = new DecimalFormat("00.00");
+        DecimalFormat format1 = new DecimalFormat("圆周率，###米");
+        System.out.println(format.format(pi));
+        System.out.println(format1.format(pi));
+        System.out.println(format1.format(pi).getClass().getName());
 
-      List list=new ArrayList();
-      list.add(0);
-      list.add(1);
-      list.add(2);
-      list.add(3);
-    System.out.println(list.get(0)+"====="+list.get(2));
-    String str="qeewtwl";
-    String s =str.substring(str.indexOf("l")+1);
-    System.out.println(s+"================================"+s.length());
+        List list = new ArrayList();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        System.out.println(list.get(0) + "=====" + list.get(2));
+        String str = "qeewtwl";
+        String s = str.substring(str.indexOf("l") + 1);
+        System.out.println(s + "================================" + s.length());
 
-     System.out.println(MyDay.MONDAY.getCode());
-      System.out.println(MyDay.MONDAY.getName());
-      System.out.println(MyDay.MONDAY.toString());
-      System.out.println(MyDay.MONDAY);
-      ReentrantLock lock=new ReentrantLock(false);
-      lock.lock();
-  }
-  }
+        System.out.println(MyDay.MONDAY.getCode());
+        System.out.println(MyDay.MONDAY.getName());
+        System.out.println(MyDay.MONDAY.toString());
+        System.out.println(MyDay.MONDAY);
+        ReentrantLock lock = new ReentrantLock(false);
+        lock.lock();
+    }
+}
 
 
 

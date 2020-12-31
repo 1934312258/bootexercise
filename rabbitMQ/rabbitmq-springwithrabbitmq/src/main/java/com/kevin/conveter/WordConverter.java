@@ -26,21 +26,21 @@ public class WordConverter implements MessageConverter {
     @Override
     public Object fromMessage(Message message) throws MessageConversionException {
         System.out.println("自定义文档转换器。。。。。。。。。。。。");
-        String msgContentType=message.getMessageProperties().getContentType();
-        String fileSuffix=null;
-        if(msgContentType!=null&&msgContentType.contains("word")){
-            fileSuffix="docx";
-        }else{
-            fileSuffix="doc";
+        String msgContentType = message.getMessageProperties().getContentType();
+        String fileSuffix = null;
+        if (msgContentType != null && msgContentType.contains("word")) {
+            fileSuffix = "docx";
+        } else {
+            fileSuffix = "doc";
         }
-        byte[]msgBody=message.getBody();
-        String filePrefixName= UUID.randomUUID().toString();
-        String filePath="d:/kevin/image"+filePrefixName+"."+fileSuffix;
-        System.out.println("文件路径："+filePath);
+        byte[] msgBody = message.getBody();
+        String filePrefixName = UUID.randomUUID().toString();
+        String filePath = "d:/kevin/image" + filePrefixName + "." + fileSuffix;
+        System.out.println("文件路径：" + filePath);
 
-        File file=new File(filePath);
+        File file = new File(filePath);
         try {
-            Files.copy(new ByteArrayInputStream(msgBody),file.toPath());
+            Files.copy(new ByteArrayInputStream(msgBody), file.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }

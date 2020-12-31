@@ -7,9 +7,9 @@ package com.kevin.constants;
  **/
 public class MqConst {
     //订单业务
-    public static final String ORDER_TO_PRODUCT_EXCHANGE_NAME="order-to-product.exchange";
-    public static final String ORDER_TO_PRODUCT_QUEUE_NAME="order-to-product.queue";
-    public static final String ORDER_TO_PRODUCT_ROUTING_KEY="order-to-product.key";
+    public static final String ORDER_TO_PRODUCT_EXCHANGE_NAME = "order-to-product.exchange";
+    public static final String ORDER_TO_PRODUCT_QUEUE_NAME = "order-to-product.queue";
+    public static final String ORDER_TO_PRODUCT_ROUTING_KEY = "order-to-product.key";
 
     //回调队列
     public static final String PRODUCT_TO_CALLBACK_QUEUE_NAME = "product_to_callback_queue";
@@ -25,7 +25,9 @@ public class MqConst {
     //延迟时间
     public static final Integer DELAY_TIME = 30000;
 
-    /**消息重发的最大次数*/
+    /**
+     * 消息重发的最大次数
+     */
     public static final Integer MSG_RETRY_COUNT = 5;
 
     public static final Integer TIME_DIFF = 100;

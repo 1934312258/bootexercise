@@ -13,18 +13,18 @@ import java.math.BigDecimal;
 @SpringBootApplication
 public class AaaaaApplication {
 
-  public static void main(String[] args) {
-      new TestInterface() {
-          @Override
-          public void test1() {
+    public static void main(String[] args) {
+        new TestInterface() {
+            @Override
+            public void test1() {
 
-          }
-      };
-      BigDecimal b1=new BigDecimal(2.0);
-      BigDecimal b2=new BigDecimal(2);
-    System.out.println(b1.compareTo(b2)>=0);
+            }
+        };
+        BigDecimal b1 = new BigDecimal(2.0);
+        BigDecimal b2 = new BigDecimal(2);
+        System.out.println(b1.compareTo(b2) >= 0);
 
-      SpringApplication.run(AaaaaApplication.class);
+        SpringApplication.run(AaaaaApplication.class);
 
-  }
+    }
 }

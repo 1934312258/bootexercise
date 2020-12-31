@@ -10,7 +10,7 @@ public interface MsgContentMapper {
 
     int updateMsgStatus(MessageContent content);
 
-    List<MessageContent>queryContents(@Param("msgStatus") Integer status, @Param("timeDiff") Integer timeDiff);
+    List<MessageContent> queryContents(@Param("msgStatus") Integer status, @Param("timeDiff") Integer timeDiff);
 
     void updateMsgReturyCount(String msgId);
 }

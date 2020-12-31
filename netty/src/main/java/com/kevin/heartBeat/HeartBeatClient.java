@@ -21,47 +21,47 @@ import java.util.Random;
  * @description todo
  **/
 public class HeartBeatClient {
-  public static void main(String[] args) {
-      EventLoopGroup group=new NioEventLoopGroup();
-      Bootstrap bootstrap = new Bootstrap();
-      try {
-      bootstrap.group(group).channel(NioSocketChannel.class)
-              .handler(new ChannelInitializer<Channel>() {
-                  @Override
-                  protected void initChannel(Channel channel) throws Exception {
-                      ChannelPipeline pipeline=channel.pipeline();
-                      pipeline.addLast("decoder",new StringDecoder());
-                      pipeline.addLast("encoder",new StringEncoder());
-                      pipeline.addLast(new HeartBeatClientHandler());
-                  }
-              });
-        System.out.println("netty client start ..");
+    public static void main(String[] args) {
+        EventLoopGroup group = new NioEventLoopGroup();
+        Bootstrap bootstrap = new Bootstrap();
+        try {
+            bootstrap.group(group).channel(NioSocketChannel.class)
+                    .handler(new ChannelInitializer<Channel>() {
+                        @Override
+                        protected void initChannel(Channel channel) throws Exception {
+                            ChannelPipeline pipeline = channel.pipeline();
+                            pipeline.addLast("decoder", new StringDecoder());
+                            pipeline.addLast("encoder", new StringEncoder());
+                            pipeline.addLast(new HeartBeatClientHandler());
+                        }
+                    });
+            System.out.println("netty client start ..");
 
-          Channel channel=bootstrap.connect("127.0.0.1",9000).sync().channel();
-          String text="Heartbeat Packet";
-          Random random=new Random();
-          while(channel.isActive()){
-              int num=random.nextInt(10);
-              Thread.sleep(2*1000);
-              channel.writeAndFlush(text);
-          }
-      } catch (InterruptedException e) {
-          e.printStackTrace();
-      }finally{
-          group.shutdownGracefully();
-      }
-  }
+            Channel channel = bootstrap.connect("127.0.0.1", 9000).sync().channel();
+            String text = "Heartbeat Packet";
+            Random random = new Random();
+            while (channel.isActive()) {
+                int num = random.nextInt(10);
+                Thread.sleep(2 * 1000);
+                channel.writeAndFlush(text);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            group.shutdownGracefully();
+        }
+    }
 
 
-  static class HeartBeatClientHandler extends SimpleChannelInboundHandler<String>{
+    static class HeartBeatClientHandler extends SimpleChannelInboundHandler<String> {
 
-      @Override
-      protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-          System.out.println("client received:"+msg);
-          if(msg!=null &&msg.equals("idle close")){
-              System.out.println("服务端关闭连接，客户端也关闭连接");
-              ctx.channel().closeFuture();
-          }
-      }
-  }
+        @Override
+        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+            System.out.println("client received:" + msg);
+            if (msg != null && msg.equals("idle close")) {
+                System.out.println("服务端关闭连接，客户端也关闭连接");
+                ctx.channel().closeFuture();
+            }
+        }
+    }
 }

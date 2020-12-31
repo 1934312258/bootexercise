@@ -14,12 +14,12 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 public class ReturnCallBack implements RabbitTemplate.ReturnCallback {
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        ObjectMapper mapper=new ObjectMapper();
-        log.warn("correlationId:{}",message.getMessageProperties().getCorrelationId());
-        log.warn("replyTest:{}",replyText);
-        log.warn("replayCode{}",replyCode);
-        log.warn("交换机：{}",exchange);
-        log.warn("routingKey:{}",routingKey);
+        ObjectMapper mapper = new ObjectMapper();
+        log.warn("correlationId:{}", message.getMessageProperties().getCorrelationId());
+        log.warn("replyTest:{}", replyText);
+        log.warn("replayCode{}", replyCode);
+        log.warn("交换机：{}", exchange);
+        log.warn("routingKey:{}", routingKey);
         log.info("需要更新数据库日日志表的消息记录为不可达");
     }
 }

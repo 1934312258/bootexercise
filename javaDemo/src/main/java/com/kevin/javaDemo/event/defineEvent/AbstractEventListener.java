@@ -9,12 +9,12 @@ public class AbstractEventListener implements EventListener {
     //控制监听器的执行顺序
     private int order;
 
-    public int  getOrder(){
+    public int getOrder() {
         return order;
     }
 
-    public AbstractEventListener(int order){
-        this.order=order;
+    public AbstractEventListener(int order) {
+        this.order = order;
     }
 
     @Override

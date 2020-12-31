@@ -29,7 +29,7 @@ public class SpringMybatisConfig {
 
     @Bean
     public DataSource dataSource() throws SQLException {
-        DruidDataSource dataSource=new DruidDataSource();
+        DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(properties.getUsername());
         dataSource.setPassword(properties.getPassword());
         dataSource.setUrl(properties.getJdbcUrl());
@@ -47,7 +47,7 @@ public class SpringMybatisConfig {
 
     @Bean   //此步操作框架会自动配置，无需手动添加，如果要配置多个事物管理器则需要手动配置
     public PlatformTransactionManager transactionManager() throws SQLException {
-        PlatformTransactionManager transactionManager=new DataSourceTransactionManager(dataSource());
+        PlatformTransactionManager transactionManager = new DataSourceTransactionManager(dataSource());
         return transactionManager;
     }
 }

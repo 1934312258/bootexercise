@@ -14,7 +14,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
         System.out.println("客户端发送数据");
         ctx.writeAndFlush("测试string编码");
         //测试发送对象
-        ctx.writeAndFlush(new User(1,"kevin"));
+        ctx.writeAndFlush(new User(1, "kevin"));
         //测试自定义long数据编码解析器
         ctx.writeAndFlush(100L);
     }

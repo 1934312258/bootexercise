@@ -11,7 +11,7 @@ import lombok.Data;
 public class Address {
     private String provinces;
     private String city;
-    private  String area;
+    private String area;
 
 
     @Override

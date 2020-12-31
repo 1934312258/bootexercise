@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class productInfo {
     private Integer productNo;
-    private String  productName;
-    private String  productNum;
+    private String productName;
+    private String productNum;
 
 }

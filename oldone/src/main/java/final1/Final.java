@@ -1,14 +1,14 @@
 package final1;
 
 public class Final {
-	public static void main(String[] args) {
-		String a="xiaoming2";
-		final String b="xiaoming";
-		String d="xiaoming";
-		String c=b+2;
-		String e=d+2;
-		System.out.println(a==c);
-		System.out.println(a==e);
+    public static void main(String[] args) {
+        String a = "xiaoming2";
+        final String b = "xiaoming";
+        String d = "xiaoming";
+        String c = b + 2;
+        String e = d + 2;
+        System.out.println(a == c);
+        System.out.println(a == e);
 		/*
 		 *变量a指的是字符串常量池中的 xiaomeng2；
 变量 b 是 final 修饰的，变量 b 的值在编译时候就已经确定了它的确定值，换句话说就是提前知道了变量 b 的内容到底是个啥，相当于一个编译期常量；
@@ -26,6 +26,6 @@ Final修饰的常量为普通变量则不可改变，为引用变量引用不可
 		 * 
 		 * 
 		 */
-		
-	}
+
+    }
 }

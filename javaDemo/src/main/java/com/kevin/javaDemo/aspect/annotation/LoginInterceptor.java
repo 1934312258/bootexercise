@@ -20,23 +20,23 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String className=((HandlerMethod)handler).getBean().getClass().getName();
-        String methodName=((HandlerMethod)handler).getMethod().getName();
+        String className = ((HandlerMethod) handler).getBean().getClass().getName();
+        String methodName = ((HandlerMethod) handler).getMethod().getName();
         //判断需不需要登陆
-        Boolean flag=LoginVerifyMapping.get(className+"."+methodName);
-        if(flag!=null&&flag){
+        Boolean flag = LoginVerifyMapping.get(className + "." + methodName);
+        if (flag != null && flag) {
             //此时需要登陆，判断是否已登录，如果没有登陆则跳转登陆页面,需要带上当前的访问路径，以便登陆
             //后直接跳转到客户想要访问的页面，调高体验度
             //获取请求方式
-            String methodname=request.getMethod();
+            String methodname = request.getMethod();
             //获取项目名
-            String contextPath=request.getContextPath();
+            String contextPath = request.getContextPath();
             //获取requestMapping值
-            String mapping=request.getServletPath();
+            String mapping = request.getServletPath();
             //获取访问路径，项目名加上mapping值
-            String requestUri=request.getRequestURI();
+            String requestUri = request.getRequestURI();
             //获取完整的访问路径
-            StringBuffer requestUrl=request.getRequestURL();
+            StringBuffer requestUrl = request.getRequestURL();
             return true;
 
         }

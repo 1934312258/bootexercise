@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableTransactionManagement
 //@RestController 研究一下此处这个注解的作用
 public class DeleyCheckApplication {
-  public static void main(String[] args) {
-      SpringApplication.run(DeleyCheckApplication.class);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(DeleyCheckApplication.class);
+    }
 }

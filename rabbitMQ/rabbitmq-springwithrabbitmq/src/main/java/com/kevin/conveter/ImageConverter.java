@@ -28,20 +28,20 @@ public class ImageConverter implements MessageConverter {
     @Override
     public Object fromMessage(Message message) throws MessageConversionException {
         System.out.println("自定义的图片转换器................");
-        String msgContentType=message.getMessageProperties().getContentType();
-        String fileSuffix=null;
-        if(msgContentType!=null&&(msgContentType.contains("png")||msgContentType.contains("jpg"))){
-            fileSuffix=msgContentType.split("/")[1];
-        }else{
-            fileSuffix="jpg";
+        String msgContentType = message.getMessageProperties().getContentType();
+        String fileSuffix = null;
+        if (msgContentType != null && (msgContentType.contains("png") || msgContentType.contains("jpg"))) {
+            fileSuffix = msgContentType.split("/")[1];
+        } else {
+            fileSuffix = "jpg";
         }
-        byte[]msgBody=message.getBody();
-        String filePrefixName= UUID.randomUUID().toString();
-        String filePath="d:/kevin/picture"+filePrefixName+"."+fileSuffix;
-        System.out.println("文件路径："+filePath);
-        File file=new File(filePath);
+        byte[] msgBody = message.getBody();
+        String filePrefixName = UUID.randomUUID().toString();
+        String filePath = "d:/kevin/picture" + filePrefixName + "." + fileSuffix;
+        System.out.println("文件路径：" + filePath);
+        File file = new File(filePath);
         try {
-            Files.copy(new ByteArrayInputStream(msgBody),file.toPath());
+            Files.copy(new ByteArrayInputStream(msgBody), file.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }

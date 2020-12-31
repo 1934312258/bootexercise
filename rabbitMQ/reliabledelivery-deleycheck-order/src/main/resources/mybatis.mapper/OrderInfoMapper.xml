@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kevin.mapper.OrderInfoMapper">
-     <insert id="saveOrderInfo" parameterType="com.kevin.entity.OrderInfo">
-         insert into order_info(order_no,create_time,update_time,user_name,money,product_no,order_status)
-         values(#{orderNo},#{createTime},#{updateTime},#{userName},#{money},#{productNo},#{orderStatus})
-     </insert>
+    <insert id="saveOrderInfo" parameterType="com.kevin.entity.OrderInfo">
+        insert into order_info(order_no,create_time,update_time,user_name,money,product_no,order_status)
+        values(#{orderNo},#{createTime},#{updateTime},#{userName},#{money},#{productNo},#{orderStatus})
+    </insert>
     <delete id="updateOrderStatusById" parameterType="Map">
-       update order_info set order_status=#{orderStatus} where order_no=#{orderNo} and order_status=0
+        update order_info set order_status=#{orderStatus} where order_no=#{orderNo} and order_status=0
     </delete>
 </mapper>

@@ -3,10 +3,10 @@ package AtomicAndUnsafe.Atomic;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AtomicIntegerTest {
-    static AtomicInteger atomicInteger=new AtomicInteger();
+    static AtomicInteger atomicInteger = new AtomicInteger();
 
     public static void main(String[] args) {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {

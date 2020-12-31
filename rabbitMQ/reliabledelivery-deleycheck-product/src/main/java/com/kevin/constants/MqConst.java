@@ -10,8 +10,8 @@ public class MqConst {
 
     public static final String PRODUCT_TO_CALLBACK_NAME = "order-to-callback.exchange";
 
-    public static final String PRODUCT_TO_CALLBACK_QUEUE_NAME="order-to-callback.queue";
+    public static final String PRODUCT_TO_CALLBACK_QUEUE_NAME = "order-to-callback.queue";
 
-    public static final String PRODUCT_TO_CALLBACK_ROUTINGKEY="order-to-callback.key";
+    public static final String PRODUCT_TO_CALLBACK_ROUTINGKEY = "order-to-callback.key";
 
 }

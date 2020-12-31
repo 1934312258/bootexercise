@@ -62,12 +62,12 @@ public class OsBean implements Serializable {
     @Override
     public String toString() {
         return "OsBean{" +
-                "ip='" +ip+'\''+
-                ", cpu="+cpu+
-                ", usedMemorySize"+usedMemorySize+
-                ", usabledMemorySize"+usableMemorySize+
-                ", pid='"+pid +'\''+
-                ", lastUpdateTime="+lastUpdateTime+
+                "ip='" + ip + '\'' +
+                ", cpu=" + cpu +
+                ", usedMemorySize" + usedMemorySize +
+                ", usabledMemorySize" + usableMemorySize +
+                ", pid='" + pid + '\'' +
+                ", lastUpdateTime=" + lastUpdateTime +
                 "}";
     }
 

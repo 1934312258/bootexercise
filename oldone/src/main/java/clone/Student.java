@@ -1,4 +1,5 @@
 package clone;
+
 //浅克隆
 /*
  *在浅克隆中，如果原型对象的成员变量是值类型，将复制一份给克隆对象；如果原型对象的成员变量是引用类型，
@@ -7,32 +8,33 @@ package clone;
  * 
  * 
  */
-public class Student implements Cloneable{
-	private int num;
+public class Student implements Cloneable {
+    private int num;
 
-	public int getNum() {
-		return num;
-	}
+    public int getNum() {
+        return num;
+    }
 
-	public void setNum(int num) {
-		this.num = num;
-	}
+    public void setNum(int num) {
+        this.num = num;
+    }
 
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		Student stu=null;
-		stu=(Student) super.clone();
-		return stu;
-	}
-	public static void main(String[] args) throws CloneNotSupportedException {
-		Student stu=new Student();
-		stu.setNum(12345);
-		Student stu1=(Student) stu.clone();
-		System.out.println("stu"+stu.getNum());
-		System.out.println("stu1"+stu1.getNum());
-		stu1.setNum(7890);
-		System.out.println("stu"+stu.getNum());
-		System.out.println("stu1"+stu1.getNum());
-	}
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        Student stu = null;
+        stu = (Student) super.clone();
+        return stu;
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Student stu = new Student();
+        stu.setNum(12345);
+        Student stu1 = (Student) stu.clone();
+        System.out.println("stu" + stu.getNum());
+        System.out.println("stu1" + stu1.getNum());
+        stu1.setNum(7890);
+        System.out.println("stu" + stu.getNum());
+        System.out.println("stu1" + stu1.getNum());
+    }
 }

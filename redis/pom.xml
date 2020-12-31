@@ -39,5 +39,11 @@
             <artifactId>redisson</artifactId>
             <version>3.6.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

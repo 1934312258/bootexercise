@@ -26,15 +26,15 @@ public class MsgSender {
     @Autowired
     private RabbitTemplate template;
 
-    public void sendMsg(String msg, Map<String,Object> args){
-        MessageProperties properties=new MessageProperties();
+    public void sendMsg(String msg, Map<String, Object> args) {
+        MessageProperties properties = new MessageProperties();
         properties.getHeaders().putAll(args);
 
         //构建消息对象
-        Message message=new Message(msg.getBytes(),properties);
+        Message message = new Message(msg.getBytes(), properties);
 
         //构建correlationData用于做可靠性投递，ID：必须为全局唯一的，根据业务规则
-        CorrelationData data=new CorrelationData(UUID.randomUUID().toString());
+        CorrelationData data = new CorrelationData(UUID.randomUUID().toString());
 
         //开启确认模式
         template.setConfirmCallback(new ConfirmCallBack());
@@ -43,41 +43,41 @@ public class MsgSender {
         template.setReturnCallback(new ReturnCallBack());
 
         //错误的交换机
-        template.convertAndSend("springboot.direct.exchange","springboot.key2asdfasdfasfasdfsfasdf",message,data);
+        template.convertAndSend("springboot.direct.exchange", "springboot.key2asdfasdfasfasdfsfasdf", message, data);
 
         //错误的队列
-        template.convertAndSend("springboot.direct.exchange","springboot.key2asdfasdfasfasdfsfasdf",message,data);
+        template.convertAndSend("springboot.direct.exchange", "springboot.key2asdfasdfasfasdfsfasdf", message, data);
     }
 
-  public void sendOrderMsg(Order order) throws JsonProcessingException {
-    // 构建correlationData用于做可靠性投递，ID：必须为全局唯一的，根据业务规则
-    CorrelationData data = new CorrelationData(UUID.randomUUID().toString());
+    public void sendOrderMsg(Order order) throws JsonProcessingException {
+        // 构建correlationData用于做可靠性投递，ID：必须为全局唯一的，根据业务规则
+        CorrelationData data = new CorrelationData(UUID.randomUUID().toString());
 
-    // 开启确认模式
-    template.setConfirmCallback(new ConfirmCallBack());
+        // 开启确认模式
+        template.setConfirmCallback(new ConfirmCallBack());
 
-    // 开启消息可达监听
-    template.setReturnCallback(new ReturnCallBack());
+        // 开启消息可达监听
+        template.setReturnCallback(new ReturnCallBack());
 
-    //使用org.springframework.amqp.core.Message 包装对象发送
-      ObjectMapper mapper=new ObjectMapper();
-      String orderJson=mapper.writeValueAsString(order);
-      MessageProperties properties=new MessageProperties();
+        //使用org.springframework.amqp.core.Message 包装对象发送
+        ObjectMapper mapper = new ObjectMapper();
+        String orderJson = mapper.writeValueAsString(order);
+        MessageProperties properties = new MessageProperties();
 
-      //用于将json串通过Jackson2JsonMessageConverter转换为map形式被消费端接收即消费端接收到
-      //json数据而非byte数组
-      properties.setContentType("application/json");
-      Message message=new Message(orderJson.getBytes(),properties);
-      template.setMessageConverter(new Jackson2JsonMessageConverter());
-      template.convertAndSend("springboot.direct.exchange","springboot.key3",message,data);
+        //用于将json串通过Jackson2JsonMessageConverter转换为map形式被消费端接收即消费端接收到
+        //json数据而非byte数组
+        properties.setContentType("application/json");
+        Message message = new Message(orderJson.getBytes(), properties);
+        template.setMessageConverter(new Jackson2JsonMessageConverter());
+        template.convertAndSend("springboot.direct.exchange", "springboot.key3", message, data);
 
-      //直接发送对象
-      template.convertAndSend("springboot.direct.exchange","springboot.key2",order,data);
+        //直接发送对象
+        template.convertAndSend("springboot.direct.exchange", "springboot.key2", order, data);
 
     }
 
 
-    public void sendDelayMessage(Order order){
+    public void sendDelayMessage(Order order) {
         // 构建correlationData用于做可靠性投递，ID：必须为全局唯一的  根据业务规则
         CorrelationData data = new CorrelationData(UUID.randomUUID().toString());
         //开启确认模式
@@ -86,24 +86,24 @@ public class MsgSender {
         template.convertAndSend("delayExchange", "springboot.delay.key", order, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setHeader("x-delay",10000);//设置延迟时间
+                message.getMessageProperties().setHeader("x-delay", 10000);//设置延迟时间
                 return message;
             }
-        },data);
+        }, data);
     }
 
-    public void sendMsgToCluster(String msg,Map<String,Object>args){
-        MessageProperties properties=new MessageProperties();
+    public void sendMsgToCluster(String msg, Map<String, Object> args) {
+        MessageProperties properties = new MessageProperties();
         properties.getHeaders().putAll(args);
 
-        Message message=new Message(msg.getBytes(),properties);
+        Message message = new Message(msg.getBytes(), properties);
 
-        CorrelationData data=new CorrelationData(UUID.randomUUID().toString());
+        CorrelationData data = new CorrelationData(UUID.randomUUID().toString());
 
         template.setConfirmCallback(new ConfirmCallBack());
 
         template.setReturnCallback(new ReturnCallBack());
 
-        template.convertAndSend("springboot.direct.exchange","rabbit.cluster.key",message,data);
+        template.convertAndSend("springboot.direct.exchange", "rabbit.cluster.key", message, data);
     }
 }

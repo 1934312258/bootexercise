@@ -7,8 +7,9 @@ package com.kevin.javaDemo.event.defineEvent;
  **/
 public class EventObject {
     private Object T;
-    public EventObject(Object T){
-       this.T=T;
+
+    public EventObject(Object T) {
+        this.T = T;
     }
 
 }

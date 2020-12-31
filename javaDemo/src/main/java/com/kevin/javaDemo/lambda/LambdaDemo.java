@@ -8,20 +8,23 @@ import org.junit.jupiter.api.Test;
  * @description todo
  **/
 public class LambdaDemo {
-    public interface UserService{
+    public interface UserService {
         String getUser(String id);
     }
-    public static void proxyGetUser(UserService service){
+
+    public static void proxyGetUser(UserService service) {
         service.getUser("kevin");
     }
-    public static String proxy(String str){
+
+    public static String proxy(String str) {
         System.out.println(str);
         return str;
     }
+
     @Test
-    public void Test1(){
+    public void Test1() {
         //表达式
-        proxyGetUser(a->null);
+        proxyGetUser(a -> null);
         proxyGetUser(new UserService() {
             @Override
             public String getUser(String id) {
@@ -29,19 +32,19 @@ public class LambdaDemo {
             }
         });
 
-    // 语句块,可以写多条语句
-    proxyGetUser(
-        b -> {
-          System.out.println(b);
-          return b;
-        });
+        // 语句块,可以写多条语句
+        proxyGetUser(
+                b -> {
+                    System.out.println(b);
+                    return b;
+                });
 
-    //引用  自身对象引用
-    proxyGetUser(String::toString);
-    //构造方法引用,在new对象的时候将id传进来
-    proxyGetUser(String::new);
-    //静态方法引用
-    proxyGetUser(LambdaDemo::proxy);
+        //引用  自身对象引用
+        proxyGetUser(String::toString);
+        //构造方法引用,在new对象的时候将id传进来
+        proxyGetUser(String::new);
+        //静态方法引用
+        proxyGetUser(LambdaDemo::proxy);
 
     }
 

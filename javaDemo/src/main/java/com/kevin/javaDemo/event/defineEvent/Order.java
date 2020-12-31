@@ -6,8 +6,8 @@ package com.kevin.javaDemo.event.defineEvent;
  * @description todo
  **/
 public class Order {
-     private Long id;
-     private  String desc;
+    private Long id;
+    private String desc;
 
     public Long getId() {
         return id;

@@ -8,13 +8,13 @@ import lombok.Data;
  * @description todo
  **/
 @Data
-public class DefineException extends RuntimeException{
+public class DefineException extends RuntimeException {
     private Integer code;
     private String errMsg;
 
-    public DefineException(Integer code, String errMsg){
+    public DefineException(Integer code, String errMsg) {
         super();
-        this.code=code;
-        this.errMsg=errMsg;
+        this.code = code;
+        this.errMsg = errMsg;
     }
 }

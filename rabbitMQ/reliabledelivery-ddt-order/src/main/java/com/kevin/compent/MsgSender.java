@@ -27,17 +27,18 @@ public class MsgSender implements InitializingBean {
     @Autowired
     private MsgReturnListener returnListener;
 
-    public void sendMsg(MessageBo message){
-        log.info("发送的消息Id：{}",message.getMsgId());
-        CorrelationData correlation=new CorrelationData(message.getMsgId());
-        template.convertAndSend(MqConst.ORDER_TO_PRODUCT_EXCHANGE_NAME,MqConst.ORDER_TO_PRODUCT_ROUTING_KEY,message,correlation);
+    public void sendMsg(MessageBo message) {
+        log.info("发送的消息Id：{}", message.getMsgId());
+        CorrelationData correlation = new CorrelationData(message.getMsgId());
+        template.convertAndSend(MqConst.ORDER_TO_PRODUCT_EXCHANGE_NAME, MqConst.ORDER_TO_PRODUCT_ROUTING_KEY, message, correlation);
     }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         template.setConfirmCallback(confirm);
         template.setReturnCallback(returnListener);
         //设置消息转换器
-        Jackson2JsonMessageConverter converter=new Jackson2JsonMessageConverter();
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
         template.setMessageConverter(converter);
     }
 }

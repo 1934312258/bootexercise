@@ -13,28 +13,28 @@ import java.util.concurrent.TimeoutException;
  * @description todo
  **/
 public class DirectProductor {
-  public static void main(String[] args) throws IOException, TimeoutException {
-      //创建连接工厂
-      ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
-      factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.159.8");
+        factory.setPort(5672);
+        factory.setVirtualHost("kevin");
+        factory.setUsername("kevin");
+        factory.setPassword("kevin");
 
-      //创建连接
-      Connection connection=factory.newConnection();
-      //创建一个channel
-      Channel channel=connection.createChannel();
+        //创建连接
+        Connection connection = factory.newConnection();
+        //创建一个channel
+        Channel channel = connection.createChannel();
 
-      //定义交换机名称
-      String exchangeName="kevin.directchange";
+        //定义交换机名称
+        String exchangeName = "kevin.directchange";
 
-      //定义routingKey
-      String routingKey="kevin.directchange.key";
+        //定义routingKey
+        String routingKey = "kevin.directchange.key";
 
-      //消息体内容
-      String messageBody="hello kevin";
-      channel.basicPublish(exchangeName,routingKey,null,messageBody.getBytes());
-  }
+        //消息体内容
+        String messageBody = "hello kevin";
+        channel.basicPublish(exchangeName, routingKey, null, messageBody.getBytes());
+    }
 }

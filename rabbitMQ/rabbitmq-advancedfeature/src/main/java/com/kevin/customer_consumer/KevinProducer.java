@@ -13,26 +13,26 @@ import java.util.concurrent.TimeoutException;
  * @description todo
  **/
 public class KevinProducer {
-  public static void main(String[] args) throws IOException, TimeoutException {
-      //创建连接工厂
-      ConnectionFactory factory=new ConnectionFactory();
-      factory.setHost("192.168.159.8");
-      factory.setPort(5672);
-      factory.setVirtualHost("kevin");
-      factory.setUsername("kevin");
-      factory.setPassword("kevin");
-      factory.setConnectionTimeout(100000);
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.159.8");
+        factory.setPort(5672);
+        factory.setVirtualHost("kevin");
+        factory.setUsername("kevin");
+        factory.setPassword("kevin");
+        factory.setConnectionTimeout(100000);
 
-      //创建连接
-      Connection connection=factory.newConnection();
-      //创建一个channel
-      Channel channel=connection.createChannel();
+        //创建连接
+        Connection connection = factory.newConnection();
+        //创建一个channel
+        Channel channel = connection.createChannel();
 
-      String exchangeName="kevin.policeman";
-      String routingkey="kevin.policeman.key";
-      String message="hello kevin";
-      for (int i=0;i<10;++i){
-          channel.basicPublish(exchangeName,routingkey,null,(message+i).getBytes());
-      }
-  }
+        String exchangeName = "kevin.policeman";
+        String routingkey = "kevin.policeman.key";
+        String message = "hello kevin";
+        for (int i = 0; i < 10; ++i) {
+            channel.basicPublish(exchangeName, routingkey, null, (message + i).getBytes());
+        }
+    }
 }
