@@ -36,24 +36,32 @@ public class Test2 implements TestInterface {
     public static void main(String[] args) {
         Test2 test2 = new Test2();
         A a = (A) Object;
-        Boolean flag = null;
-        if (flag) {
 
-        }
-
-        test2.setAge(12);
-        int qw = -test2.getAge();
-        qw = qw + 4;
-        System.out.println(qw);
-        Random random = new Random();
-        int ad = random.nextInt(10);
+//        test2.setAge(12);
+//        int qw = -test2.getAge();
+//        qw = qw + 4;
+//        System.out.println(qw);
+//        Random random = new Random();
+//        int ad = random.nextInt(10);
 //      for(;;) {
 //          System.out.println(random.nextInt(10));
 //      }
-        Map<String, Integer> map = new HashMap<>();
-        System.out.println(map.get("retgfhg"));
-        String str = "https://xgimg1test.hktanis.com/data/upload/refund/101280770966984/2020/11/23/102791054396352.png,";
-        str = str.substring(str.indexOf("/data/upload"));
-        System.out.println(str);
+      /** /a/b/c/ 变成 /a/b/c
+                /a//b/ 变成 /a/b
+                /a/./../b/../c/ 变成 /c
+       */
+
+      String str = "/a/b/c/";
+      String str1 = "/a//b/";
+      String str2 = "/a/./../b/../c/";
+        System.out.println(str.substring(0,str.length()-1));
+        System.out.println(str1.substring(0,str1.length()-1).replace("//","/"));
+        System.out.println(str2.substring(str2.length()-3,str2.length()-1));
+        System.out.println(str2.codePointAt(0));
+        System.out.println(str2.codePointAt(1));
+        System.out.println(str2.codePointBefore(2));
+        System.out.println(str2.codePointCount(0,2));
+        String string = new String(new char[2]);
     }
+
 }

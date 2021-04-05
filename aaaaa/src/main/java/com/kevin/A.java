@@ -1,5 +1,7 @@
 package com.kevin;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
+
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +12,15 @@ import java.util.stream.Collectors;
  * @date 2020-6-4 16:30
  * @description todo
  **/
-public class A {
+public class A implements TestInterface{
+
+    public void test(){
+        System.out.println("a");
+    }
+
+    public A(){
+        System.out.println('a');
+    }
     public static final long DAY_MILLISECONDS = 24 * 3600 * 1000;
 
     // 一小时的毫秒数
@@ -35,6 +45,13 @@ public class A {
     }
 
     public static void main(String[] args) {
+
+        char ascii = ' ';
+        char ascii1 = 101;
+        System.out.println(ascii == 32);
+        System.out.println(ascii);
+        System.out.println(ascii1);
+
         List list = new ArrayList();
         A a1 = new A();
         A a2 = new A();
@@ -149,5 +166,10 @@ public class A {
 
         String s = "hyryj";
         s.split(",");
+    }
+
+    @Override
+    public void test1() {
+
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.beans.BeanUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
 
 import static com.alibaba.fastjson.JSON.parseObject;
 
@@ -22,6 +24,11 @@ import static com.alibaba.fastjson.JSON.parseObject;
 public class B extends A {
     Integer age;
 
+    @Override
+    public void test() {
+        System.out.println("b");
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -31,7 +38,7 @@ public class B extends A {
     }
 
     public B() {
-
+        System.out.println('b');
     }
 
     public B(int age, List<B> list) {
@@ -61,12 +68,18 @@ public class B extends A {
         return strs;
     }
 
-    private static void test(long longa){
+    private static void test(TestInterface testInterface){
+        System.out.println("钩子方法");
+        testInterface.test1();
 
     }
 
 
     public static void main(String[] args) {
+//        Map map13 = new ConcurrentHashMap(189);
+        Map map13 = new HashMap(193);
+        String result = (String) map13.put("kevin","kevin");
+        result = (String) map13.put("kevin",'d');
         Date time = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(time);
@@ -79,7 +92,14 @@ public class B extends A {
             cornStr = cornStr.replaceFirst(" ", "/" + interval + " ");
         }
         B b = new B();
+        b.test();
         String[] test = b.array();
+        b.test(new TestInterface() {
+            @Override
+            public void test1() {
+                System.out.println("调用钩子方法");
+            }
+        });
 
         Map<String, Object> map = new HashMap();
         map.put("age", 1);

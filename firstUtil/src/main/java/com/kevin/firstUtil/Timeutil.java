@@ -19,6 +19,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 
 /**
@@ -72,6 +73,14 @@ public class Timeutil {
         int day = date.getDayOfMonth();
         int d = date.getDayOfYear();
         DayOfWeek week = date.getDayOfWeek();//获取当前周几的枚举类对象的值
+        LocalDateTime datea = LocalDateTime.now();
+        datea = datea.withDayOfMonth(2);//本月第二天的当前时间
+        date = date.withDayOfYear(20);//本年第20天的当前时间
+        date = date.withMonth(12);
+        date = date.withYear(12);
+        datea.with(TemporalAdjusters.firstDayOfMonth());//本月第一天
+        date.with(TemporalAdjusters.lastDayOfMonth());
+        date.with(TemporalAdjusters.firstInMonth(DayOfWeek.FRIDAY));//返回本月第一个星期五
         //printf
 //        System.out.printf("Year : %d  Month : %d  day : %d ", year, month, day);
 //        System.out.println(date.getDayOfWeek());

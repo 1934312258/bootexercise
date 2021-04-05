@@ -88,6 +88,7 @@ public class StringTest {
         // bigMap 命令  ，Kevin 最外层key，1000，偏移量  ，true
         result = ops.setBit("kevin",1000,true);
         result = ops.getBit("kevin",1000);
+        // bitCount 用于统计时如果指定范围，则范围是以字节byte为单位而不是bit位为单位
         int tongji = (int) template.execute((RedisCallback<Long>) con->con.bitCount("kevin".getBytes()));
 
         //bitfield w get i3 2    i表示有符号数，u表示无符号数，3表示截取三位，2表示从第三位开始截取

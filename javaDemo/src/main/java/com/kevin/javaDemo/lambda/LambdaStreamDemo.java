@@ -26,7 +26,7 @@ public class LambdaStreamDemo {
         peoples.add(new People("K.O4", 24, "kevin", new Date()));
         peoples.add(new People("K.O5", 25, "kevin1", new Date()));
         peoples.add(new People("K.O2", 22, "kevin", new Date()));
-        peoples.add(new People("K.O6", null, "kevin2", new Date()));
+        peoples.add(new People("K.O6", 26, "kevin2", new Date()));
 //        peoples.add(new People("K.O1", 21, "kevin",new Date()));
 //        peoples.add(new People("K.O3", 26, "kevin1",new Date()));
 //        peoples.add(new People("K.O4", 27,"kevin", new Date()));
@@ -153,7 +153,7 @@ public class LambdaStreamDemo {
     public void sortByAgeSuccess() {
         System.out.println("###排序前---");
         peoples.forEach(x -> System.out.println(x.getAge()));
-
+        // 从小到大排列
         peoples.sort((x, y) -> {
             if (x.getAge() > y.getAge()) {
                 return 1;
