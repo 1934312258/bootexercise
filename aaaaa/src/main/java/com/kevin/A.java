@@ -12,15 +12,16 @@ import java.util.stream.Collectors;
  * @date 2020-6-4 16:30
  * @description todo
  **/
-public class A implements TestInterface{
+public class A implements TestInterface {
 
-    public void test(){
+    public void test() {
         System.out.println("a");
     }
 
-    public A(){
+    public A() {
         System.out.println('a');
     }
+
     public static final long DAY_MILLISECONDS = 24 * 3600 * 1000;
 
     // 一小时的毫秒数

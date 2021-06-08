@@ -102,13 +102,11 @@ public class LambdaStreamDemo {
         System.out.println("--------");
         System.out.println(111111);
 
-        List<Integer> ages = peoples.stream().filter(people->!ObjectUtils.isEmpty(people.getAge())).map(People::getAge).collect(Collectors.toList());
+        List<Integer> ages = peoples.stream().filter(people -> !ObjectUtils.isEmpty(people.getAge())).map(People::getAge).collect(Collectors.toList());
         System.out.println(ObjectUtils.isEmpty(ages));
         Map<String, People> map3 = peoples.stream().collect(Collectors.toMap(People::getId, People -> People));
 
         Map<Integer, Long> map = peoples.stream().collect(Collectors.groupingBy(People::getAge, Collectors.counting()));
-
-
 
 
         Map<String, Map<String, Integer>> result =

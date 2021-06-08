@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
@@ -95,6 +96,7 @@ public class BitFieldSubCommands implements Iterable<BitFieldSubCommands.BitFiel
     public static class BitFieldGet extends BitFieldSubCommands.AbstractBitFieldSubCommand {
         public BitFieldGet() {
         }
+
         @Override
         public String getCommand() {
             return "GET";
@@ -208,6 +210,7 @@ public class BitFieldSubCommands implements Iterable<BitFieldSubCommands.BitFiel
             return this.asString();
         }
     }
+
     // 具体的执行命令
     public interface BitFieldSubCommand {
         String getCommand();

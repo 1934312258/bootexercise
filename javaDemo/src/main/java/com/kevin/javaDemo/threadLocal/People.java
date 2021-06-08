@@ -9,13 +9,15 @@ package com.kevin.javaDemo.threadLocal;
  * @since 2021/5/6 14:57
  */
 public class People {
-    private String name ;
+    private String name;
     private Integer age;
 
-    static ThreadLocal<People> threadLocal = ThreadLocal.withInitial(()->new People());
-    public static People getPeople(){
+    static ThreadLocal<People> threadLocal = ThreadLocal.withInitial(() -> new People());
+
+    public static People getPeople() {
         return threadLocal.get();
     }
+
     public String getName() {
         return name;
     }

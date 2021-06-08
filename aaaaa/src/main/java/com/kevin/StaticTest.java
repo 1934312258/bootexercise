@@ -13,11 +13,12 @@ import java.util.Map;
  */
 public class StaticTest {
     static Map map;
-    static{
+
+    static {
         map = new Hashtable();
-        map.put("name","kevin");
-        map.put("age",18);
-}
+        map.put("name", "kevin");
+        map.put("age", 18);
+    }
 
 
     public static void main(String[] args) {

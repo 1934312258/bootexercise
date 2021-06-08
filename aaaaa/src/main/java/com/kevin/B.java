@@ -68,7 +68,7 @@ public class B extends A {
         return strs;
     }
 
-    private static void test(TestInterface testInterface){
+    private static void test(TestInterface testInterface) {
         System.out.println("钩子方法");
         testInterface.test1();
 
@@ -78,8 +78,8 @@ public class B extends A {
     public static void main(String[] args) {
 //        Map map13 = new ConcurrentHashMap(189);
         Map map13 = new HashMap(193);
-        String result = (String) map13.put("kevin","kevin");
-        result = (String) map13.put("kevin",'d');
+        String result = (String) map13.put("kevin", "kevin");
+        result = (String) map13.put("kevin", 'd');
         Date time = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(time);
@@ -116,11 +116,11 @@ public class B extends A {
         Long fdefd = Long.getLong(str1);
         long ewf = Long.valueOf(str1);
         long dewdf = Long.parseLong(str1);
-        if(12 <= 13){
+        if (12 <= 13) {
             System.out.println(1111);
         }
-        DateTime dateTime = DateUtil.offsetMinute(new Date(),1440);
-        if(new Integer(0) == null){
+        DateTime dateTime = DateUtil.offsetMinute(new Date(), 1440);
+        if (new Integer(0) == null) {
 
         }
         System.out.println();

@@ -1,5 +1,8 @@
 package com.kevin;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -7,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,6 +24,16 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Exercise {
 
     public static void main(String[] args) throws Exception {
+        Long dis = 1896L;
+        BigDecimal bigDecimal = new BigDecimal(dis);
+        bigDecimal = bigDecimal.divide(new BigDecimal(1000),1,BigDecimal.ROUND_HALF_UP);
+        List list = new ArrayList();
+        for(int i = 0; i< 10;i++){
+            list.add(i);
+        }
+        list = list.subList(1,3);
+
+
         A a = new A();
         B b = new B();
         a.setName("kevin");
@@ -37,22 +51,11 @@ public class Exercise {
         System.out.println(format1.format(pi));
         System.out.println(format1.format(pi).getClass().getName());
 
-        List list = new ArrayList();
-        list.add(0);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        System.out.println(list.get(0) + "=====" + list.get(2));
-        String str = "qeewtwl";
-        String s = str.substring(str.indexOf("l") + 1);
-        System.out.println(s + "================================" + s.length());
-
         System.out.println(MyDay.MONDAY.getCode());
         System.out.println(MyDay.MONDAY.getName());
         System.out.println(MyDay.MONDAY.toString());
         System.out.println(MyDay.MONDAY);
         ReentrantLock lock = new ReentrantLock(false);
-        lock.lock();
     }
 }
 

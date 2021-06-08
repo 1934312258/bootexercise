@@ -1,5 +1,6 @@
 package com.kevin.javaDemo.threadLocal;
 
+
 /**
  * <p>
  *
@@ -12,29 +13,41 @@ public class ThreadLocalTest {
 
     /**
      * 在实体内定义threadLocal变量，用于线程安全，并且保证任何位置均可获取到该对象
-     *
-     * **/
-    public static void main(String[] args) {
+     **/
+    public static void main(String[] args) throws InterruptedException {
 
-        Thread t1 = new Thread(()->{
-            People people = People.getPeople();
-            people.setAge(18);
-            people.setName("kevin");
+//        Thread t1 = new Thread(() -> {
+//            People people = People.getPeople();
+//            people.setAge(18);
+//            people.setName("kevin");
+//
+//            System.out.println(people.getAge());
+//        });
+//
+//        Thread t2 = new Thread(() -> {
+//            People people = People.getPeople();
+//            System.out.println(people.getAge());
+//            people.setAge(19);
+//            people.setName("zwj");
+//
+//            System.out.println(people.getAge());
+//        });
+//
+//        t1.start();
+//        t2.start();
 
-            System.out.println(people.getAge());
-        });
+        while(true){
+            for(int i =0;i<1000;i++){
+                new Thread(()->{
+                    People people = People.getPeople();
+                    people.setAge(19);
+                    people.setName("zwj");
+                    System.out.println(people.getAge());
+                }).start();
+            }
+            Thread.sleep(2000);
+        }
 
-        Thread t2 = new Thread(()->{
-            People people = People.getPeople();
-            System.out.println(people.getAge());
-            people.setAge(19);
-            people.setName("zwj");
-
-            System.out.println(people.getAge());
-        });
-
-        t1.start();
-        t2.start();
 
     }
 }
