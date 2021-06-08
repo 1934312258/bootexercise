@@ -35,8 +35,10 @@ public class StringUtil {
 
         // startsWith
         System.out.println(b.startsWith("abc"));
-        System.out.println(b.startsWith("cd", 2));
+        //toffset从第几位开始比较
+        System.out.println(b.startsWith("cd",2));
         //endWith
+        System.out.println(b.startsWith("cd", 2));
 
         //indexOf 当参数是int值时代表char的ascii值
         System.out.println(b.indexOf(98));
@@ -65,6 +67,12 @@ public class StringUtil {
 
         // matches,字符串是否匹配正则表达式
         System.out.println(replace.matches("(.*)runoob(.*)"));
+        String pattern = "d";
+
+
+
+
+
 
         // contains，是否包含，使用的indexOf方法
         System.out.println(b.contains("b"));
@@ -86,6 +94,7 @@ public class StringUtil {
         //toCharArray 将字符串的char数组拷贝一份出来
 
         //format  此处会重点总结
+        String.format("%s","kevin");
 
 
         //valueOf 获取一个新的字符串,重载方法较多
@@ -115,5 +124,6 @@ public class StringUtil {
         System.out.println(equal.equals(equals));
         // equalsIgnoreCase  比较值是否相等,忽略大小写
         equal.equalsIgnoreCase(equals);
+
     }
 }
