@@ -5,7 +5,8 @@ import java.sql.SQLOutput;
 public class StringUtil {
     public static void main(String[] args) {
 
-
+        String ewfr = "1.34";
+        System.out.println(ewfr.substring(ewfr.indexOf(".")+1));
         //codePointAt 返回char对应的ascii的值
 
         //codePointBefore 返回前一个char对应的ascii的值

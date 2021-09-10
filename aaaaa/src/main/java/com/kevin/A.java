@@ -22,6 +22,10 @@ public class A implements TestInterface {
         System.out.println('a');
     }
 
+    public void test2(){
+        this.test();
+    }
+
     public static final long DAY_MILLISECONDS = 24 * 3600 * 1000;
 
     // 一小时的毫秒数
@@ -46,7 +50,8 @@ public class A implements TestInterface {
     }
 
     public static void main(String[] args) {
-
+        A a1 = new A();
+        a1.test2();
         char ascii = ' ';
         char ascii1 = 101;
         System.out.println(ascii == 32);
@@ -54,7 +59,7 @@ public class A implements TestInterface {
         System.out.println(ascii1);
 
         List list = new ArrayList();
-        A a1 = new A();
+
         A a2 = new A();
         a2.setName(a1.getName());
         a1.setName(null);

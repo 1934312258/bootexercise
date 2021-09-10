@@ -61,7 +61,10 @@ public class Timeutil {
          * LocalDate与LocalTime均为不可变量，修改之后必修赋值给新的对象引用
          * */
         //String str = "2019-09-05T02:19:20.373Z";
-
+        String string123 = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        string123 = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        string123 = LocalDateTime.now().format(DateTimeFormatter.BASIC_ISO_DATE);
+        LocalDateTime localDateTime = LocalDateTime.parse("2021-06-24 11:00:10", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         //获取当前年月日
         LocalDate date = LocalDate.now();
@@ -230,7 +233,11 @@ public class Timeutil {
         //带有时区的日期应该使用次模板转换
         String formatIn = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
 
-
+        LocalDateTime localDateTime1 = LocalDateTime.parse("2021-07-27 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        if(localDateTime1.equals(LocalDateTime.of(LocalDate.now(),LocalTime.MIN))){
+            System.out.println(localDateTime1.compareTo(LocalDateTime.MIN));
+            System.out.println("123");
+        }
         String str2 = "2012/12/12";
         Calendar calendar = Calendar.getInstance();
         calendar.getTime();

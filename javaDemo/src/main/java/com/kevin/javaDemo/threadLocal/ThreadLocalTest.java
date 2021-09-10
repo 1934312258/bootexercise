@@ -40,6 +40,8 @@ public class ThreadLocalTest {
             for(int i =0;i<1000;i++){
                 new Thread(()->{
                     People people = People.getPeople();
+                    People.remove();
+                    people = People.getPeople();
                     people.setAge(19);
                     people.setName("zwj");
                     System.out.println(people.getAge());

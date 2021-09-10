@@ -18,6 +18,10 @@ public class People {
         return threadLocal.get();
     }
 
+    public static void remove() {
+        threadLocal.remove();
+    }
+
     public String getName() {
         return name;
     }

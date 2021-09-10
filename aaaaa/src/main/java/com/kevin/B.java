@@ -26,6 +26,7 @@ public class B extends A {
 
     @Override
     public void test() {
+        super.test();
         System.out.println("b");
     }
 

@@ -3,10 +3,13 @@ package com.kevin.firstUtil;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @创建人 zhaowenjian
@@ -34,9 +37,22 @@ public class BigDemicalTest {
     }
 
     public static void main(String[] args) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumIntegerDigits(4);
+        formatter.setGroupingUsed(false);
+        System.out.println(formatter.format(100));
+        List list = new ArrayList();
+        list.add(0,null);
+        list.add(1,1);
+
+        MathContext mc = new MathContext(2, RoundingMode.HALF_UP);
+
+        BigDecimal gfdgfd = new BigDecimal(0.115,mc);
+
         BigDemicalTest test = new BigDemicalTest();
         BigDecimal big = new BigDecimal(1.02);
         BigDecimal big1 = new BigDecimal(1.00);
+        long price  = big.multiply(new BigDecimal(100)).longValue();
 
         // 小数部分全部为零，则此方法可以去除小数部分，如果小数部分不为零则不可使用该方法,后面会带上很多非零小数值
         big.stripTrailingZeros().toPlainString();

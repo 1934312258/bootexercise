@@ -1,6 +1,12 @@
 package com.kevin;
 
+import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author
@@ -18,32 +24,52 @@ public class Test1 implements TestInterface {
 
     boolean classtrue = true;
 
-    void test2() {
+    static void test2(Long a, Long b, Long c) {
+        a = a + b + c;
         boolean testtrue = true;
-        System.out.println(classtrue + "========" + testtrue);
+        System.out.println(  "========" + testtrue);
         testtrue = false;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Test1 test1 = new Test1();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                test1.test2();
-                test1.classtrue = false;
-                test1.test2();
+        List list = new ArrayList();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+        list.add(null);
+        if(ObjectUtil.isNotEmpty(list) && ObjectUtil.isNotEmpty(list.get(0))){
+            System.out.println();
+        }
+        if(ObjectUtil.isNotNull(list)){
+            System.out.println();
+        }
+        Iterator<Integer> iterator = list.iterator();
+        while(iterator.hasNext()){
+            int re = iterator.next();
+            if(re == 2){
+                iterator.remove();
             }
-        }).start();
+            System.out.println(re);
+        }
+        System.out.println();
 
-        Thread.sleep(3000);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                test1.test2();
-
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+////                test1.test2();
+////                test1.classtrue = false;
+////                test1.test2();
+//            }
+//        }).start();
+//
+//        Thread.sleep(3000);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+////                test1.test2();
+//
+//            }
+//        }).start();
 
 
     }

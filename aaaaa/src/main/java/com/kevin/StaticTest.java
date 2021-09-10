@@ -22,18 +22,12 @@ public class StaticTest {
 
 
     public static void main(String[] args) {
-        String str = "1343355";
-        Integer in = Integer.getInteger(str);
-        in = Integer.valueOf(str);
-        System.out.println(in);
-//        long s = System.currentTimeMillis();
-//        for(int i =0; i<100000;i++){
-//            Thread t = new Thread(()->{
-//                System.out.println(map.get("name") + " "+map.get("age"));
-//            });
-//            t.start();
-//        }
-//        System.out.println(System.currentTimeMillis() - s);
+        do{
+            System.out.println("begin");
+        }while(1>2);
+
+        System.out.println("end");
+
     }
 }
 
