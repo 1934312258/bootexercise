@@ -57,6 +57,11 @@ public class A implements TestInterface {
         System.out.println(ascii == 32);
         System.out.println(ascii);
         System.out.println(ascii1);
+        System.out.println("我实在打击报复借款方地方各级".length());
+        String string = "jfgfjvgbn35dkn_kfdlnfv.jPg";
+        if(string.contains(".jpg")){
+            System.out.println();
+        }
 
         List list = new ArrayList();
 
@@ -67,6 +72,7 @@ public class A implements TestInterface {
         list.add(123);
         list.add(456);
         list.add(789);
+        System.out.println(list.toString());
         Map<String, List<Integer>> map1 = new HashMap();
         map1.put("kevim", list);
         map1.forEach((k, v) -> {
