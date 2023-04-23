@@ -1,5 +1,7 @@
 package com.kevin.javaDemo.algorithm;
 
+import java.util.Arrays;
+
 public class Maopao {
     public static void main(String[] args) {
         int [] ints = {1,2,3,4,5};
@@ -24,5 +26,6 @@ public class Maopao {
                 break;
             }
         }
+        System.out.println(Arrays.toString(ints));
     }
 }
