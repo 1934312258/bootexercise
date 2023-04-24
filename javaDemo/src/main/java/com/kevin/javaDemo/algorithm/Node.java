@@ -9,7 +9,8 @@ public class Node<V>{
     public static void main(String[] args) {
         Node<Integer> parent = new Node();
         parent.v = 0;
-        createTree(2,3,parent);
+        createTree(2,5,parent);
+        System.out.println();
     }
 
     static void createTree(int h,int height,Node<Integer> parent){
@@ -17,7 +18,20 @@ public class Node<V>{
             return;
         }
         while(h <= height){
-            parent.left = createTree();
+            if(parent.left != null){
+                return;
+            }
+            Node<Integer> right = new Node();
+            Node<Integer> left = new Node();
+            right.parent = parent;
+            right.v = parent.v * 2 + 2;
+            left.parent = parent;
+            left.v = parent.v * 2 + 1;
+            parent.right = right;
+            parent.left = left;
+            h++;
+            createTree(h,height,parent.left);
+            createTree(h,height,parent.right);
         }
     }
 
