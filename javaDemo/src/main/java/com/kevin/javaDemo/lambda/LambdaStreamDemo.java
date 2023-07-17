@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class LambdaStreamDemo {
     private List<People> peoples = null;
     List<Integer> list;
-
+    // 1
     @Before
     public void before() {
         peoples = new ArrayList<>();
@@ -186,6 +186,10 @@ public class LambdaStreamDemo {
                 .flatMap(a -> a.stream())
                 .distinct()
                 .forEach(System.out::println);
+
+        List<Object> list = peoples.stream().map(a -> Arrays.asList(a.getAge(), a.getBrith())).flatMap(a->a.stream()
+        ).collect(Collectors.toList());
+        System.out.println();
     }
 
     /**
