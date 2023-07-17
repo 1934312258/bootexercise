@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class LambdaStreamDemo {
     private List<People> peoples = null;
     List<Integer> list;
-    // 1 2
+    // 1 2 3
     @Before
     public void before() {
         peoples = new ArrayList<>();
