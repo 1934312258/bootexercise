@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.util.ObjectUtils;
 
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -17,7 +18,6 @@ import java.util.stream.Collectors;
 public class LambdaStreamDemo {
     private List<People> peoples = null;
     List<Integer> list;
-    // 1 2 3 44
     @Before
     public void before() {
         peoples = new ArrayList<>();
@@ -40,7 +40,7 @@ public class LambdaStreamDemo {
 //        peoples.add(new People("K.O2", 39, "kevin",new Date()));
 //        peoples.add(new People("K.O6", 38, "kevin2",new Date()));
 
-        list = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 13, 14, 23, 11, 100, 98, 23);
+        list = Arrays.asList(0, 1, 2, 3);
     }
 
     /**
@@ -65,7 +65,7 @@ public class LambdaStreamDemo {
      */
     @Test
     public void whenFilterAgeGT25Success() {
-        List<People> peoples1 = peoples.stream().filter(x -> x.getAge() > 25).collect(Collectors.toList());
+        List<People> peoples1 = peoples.stream().filter(x -> x.getAge() > 20).collect(Collectors.toList());
         peoples1.forEach(x -> System.out.println(x.toString()));
     }
 
@@ -275,12 +275,13 @@ public class LambdaStreamDemo {
         // identitty 起始值,然后与集合中的值进行相应的运算，再次赋值给 identity 然后在进行运算
         int sum = list.stream().reduce(100, (a, b) -> a + b);
         System.out.println(sum);
-
+        BigDecimal decimal = new BigDecimal(" ");
+        System.out.println(decimal);
         // 2 reduce（BinaryOperator）此方法相对于上面方法来说，没有起始值，则有可能结果为空，所以返回的值会被封装到Optional中。
         //map和reduce的连接通常称为map-reduce模式，因Google用它来进行网络搜索而出名。用map 来提取 对象中某个属性，然后再用reduce 进行归约
-        Optional<Integer> optional = peoples.stream().map(a -> a.getAge()).reduce(Integer::sum);
-        Optional<Integer> optiona = peoples.stream().map(a -> a.getAge()).reduce((a, b) -> a + b);
-        System.out.println(optional.get());
+//        Optional<Integer> optional = peoples.stream().map(a -> a.getAge()).reduce(Integer::sum);
+//        Optional<Integer> optiona = peoples.stream().map(a -> a.getAge()).reduce((a, b) -> a + b);
+//        System.out.println(optional.get());
     }
 
     /**

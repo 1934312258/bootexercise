@@ -1,5 +1,6 @@
 package com.kevin.javaDemo.lambda;
 
+import com.alibaba.fastjson.JSON;
 import jodd.util.ObjectUtil;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +24,7 @@ public class People {
         this.age = age;
         this.brith = brith;
         this.id = id;
+        this.name = name;
     }
 
     public Integer getAge() {
@@ -99,5 +101,9 @@ public class People {
         strings = peoples.stream().map(a->!StringUtils.isEmpty(a.getAge())?a.getId():a.getName()).collect(Collectors.toList());
         Long list = students.stream().mapToLong(a->true?a.getAge():a.getScore()).sum();
         list = students.stream().mapToLong(a->false?a.getAge():a.getScore()).sum();
+
+        String str = "{\"age\":18,name:\"kevin\"}";
+        People people = JSON.parseObject(str,People.class);
+        System.out.println();
     }
 }

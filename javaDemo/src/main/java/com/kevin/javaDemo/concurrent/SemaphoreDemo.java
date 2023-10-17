@@ -27,10 +27,10 @@ public class SemaphoreDemo {
         public void run() {
             try {
                 semaphore.acquire();
-                System.out.println(Thread.currentThread().getName() + ": aquire() at time:" + System.currentTimeMillis());
+                System.out.println(Thread.currentThread().getName() + ": acquire() at time:" + System.currentTimeMillis());
                 Thread.sleep(1000);
                 semaphore.release();
-                System.out.println(Thread.currentThread().getName() + ": aquire() at time: " + System.currentTimeMillis());
+                System.out.println(Thread.currentThread().getName() + ": acquire() at time: " + System.currentTimeMillis());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
